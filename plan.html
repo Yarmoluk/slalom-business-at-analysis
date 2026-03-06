@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30-Day Plan: business@ Intelligence Layer | For Eric Olson</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+  }
+  .header {
+    background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
+    padding: 40px 60px;
+    border-bottom: 3px solid #ffc107;
+  }
+  .header h1 { font-size: 28px; color: #fff; margin-bottom: 6px; }
+  .header .subtitle { font-size: 14px; color: #a0a0c0; }
+  .header .callout {
+    margin-top: 14px; background: #ffc10722; border: 1px solid #ffc107;
+    border-radius: 6px; padding: 12px 18px; display: inline-block;
+  }
+  .header .callout span { color: #ffc107; font-weight: 700; font-size: 14px; }
+  .header .callout .sub { color: #a0a0c0; font-size: 11px; margin-left: 8px; }
+
+  .container { max-width: 1300px; margin: 0 auto; padding: 30px 40px; }
+
+  .section-title {
+    font-size: 18px; font-weight: 700; color: #e94560;
+    border-bottom: 2px solid #e94560; padding-bottom: 6px;
+    margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  .week-box {
+    background: #16213e; border-radius: 12px; padding: 24px 28px;
+    margin-bottom: 24px; border: 1px solid #0f3460;
+  }
+  .week-box h2 {
+    font-size: 18px; color: #53d8fb; margin-bottom: 4px;
+  }
+  .week-box .week-dates { font-size: 12px; color: #a0a0c0; margin-bottom: 16px; }
+  .week-box .deliverable {
+    background: #1a1a2e; border-radius: 8px; padding: 16px 20px;
+    margin-bottom: 14px; border-left: 4px solid #00d97e;
+  }
+  .week-box .deliverable h3 { font-size: 14px; color: #00d97e; margin-bottom: 6px; }
+  .week-box .deliverable p { font-size: 13px; color: #c0c0d8; line-height: 1.6; }
+  .week-box .deliverable .code-ref {
+    font-size: 11px; color: #ffc107; margin-top: 8px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .arch-box {
+    background: #16213e; border-radius: 12px; padding: 24px;
+    margin-bottom: 30px; border: 1px solid #0f3460; overflow-x: auto;
+  }
+
+  .metric-row { display: flex; gap: 16px; margin-bottom: 30px; flex-wrap: wrap; }
+  .metric {
+    background: #16213e; border-radius: 8px; padding: 16px 20px;
+    flex: 1; min-width: 180px; text-align: center; border: 1px solid #0f3460;
+  }
+  .metric .num { font-size: 28px; font-weight: 700; color: #00d97e; }
+  .metric .label { font-size: 10px; color: #a0a0c0; text-transform: uppercase; margin-top: 4px; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  th {
+    background: #0f3460; color: #53d8fb; font-size: 11px; text-transform: uppercase;
+    padding: 10px 12px; text-align: left; border-bottom: 2px solid #e94560;
+  }
+  td { padding: 10px 12px; font-size: 12px; border-bottom: 1px solid #1a1a3e; color: #c0c0d8; }
+  tr:hover td { background: #1a1a3e; }
+
+  .badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 3px; font-weight: 600; }
+  .badge-green { background: #00d97e22; color: #00d97e; }
+  .badge-red { background: #ff6b6b22; color: #ff6b6b; }
+  .badge-yellow { background: #ffc10722; color: #ffc107; }
+  .badge-blue { background: #53d8fb22; color: #53d8fb; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+  .card {
+    background: #16213e; border-radius: 10px; padding: 20px;
+    border: 1px solid #0f3460;
+  }
+  .card h3 { font-size: 14px; color: #53d8fb; margin-bottom: 10px; }
+  .card ul { list-style: none; padding: 0; }
+  .card li { font-size: 12px; line-height: 1.7; padding-left: 14px; position: relative; color: #c0c0d8; }
+  .card li::before { content: "~"; position: absolute; left: 0; color: #e94560; font-weight: bold; }
+
+  .final-box {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    border: 2px solid #ffc107; border-radius: 12px;
+    padding: 28px 32px; margin-bottom: 30px;
+  }
+  .final-box h2 { color: #ffc107; font-size: 20px; margin-bottom: 14px; }
+  .final-box p { font-size: 14px; color: #e0e0e0; line-height: 1.7; }
+
+  a { color: #53d8fb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .no-print {
+    position: fixed; bottom: 20px; right: 20px;
+    background: #e94560; color: #fff; border: none; padding: 10px 20px;
+    border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;
+  }
+
+  @media print { .no-print { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>30-Day Plan: business@ Intelligence Layer</h1>
+  <div class="subtitle">From Model Catalog to AI Platform | All Code Included | #Minneapolis</div>
+  <div class="callout">
+    <span>ERIC — HERE'S THE PLAN WITHOUT LOOKING AT IT, TGIF!!! — DAN</span>
+    <span class="sub">#Minneapolis | Built with Claude Code (Opus 4.6) | All code ships with this document</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== ARCHITECTURE ==================== -->
+<div class="section-title">Target Architecture: 4 Services, 30 Days</div>
+
+<div class="arch-box">
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+  <!-- User layer -->
+  <rect x="350" y="10" rx="8" ry="8" width="300" height="40" fill="#53d8fb" opacity="0.8"/>
+  <text x="500" y="35" text-anchor="middle" fill="#16213e" font-size="12" font-weight="700">business@ Chat UI (existing)</text>
+
+  <line x1="500" y1="50" x2="500" y2="80" stroke="#53d8fb" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- PII Scanner -->
+  <rect x="350" y="80" rx="8" ry="8" width="300" height="40" fill="#ff6b6b" opacity="0.8"/>
+  <text x="500" y="105" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">PII Scanner (port 8002) — WEEK 1</text>
+
+  <line x1="500" y1="120" x2="500" y2="150" stroke="#ff6b6b" stroke-width="2"/>
+
+  <!-- Smart Router -->
+  <rect x="350" y="150" rx="8" ry="8" width="300" height="40" fill="#ffc107" opacity="0.8"/>
+  <text x="500" y="175" text-anchor="middle" fill="#16213e" font-size="11" font-weight="700">Smart Router (port 8001) — WEEK 1</text>
+
+  <line x1="500" y1="190" x2="300" y2="240" stroke="#ffc107" stroke-width="1.5"/>
+  <line x1="500" y1="190" x2="500" y2="240" stroke="#ffc107" stroke-width="1.5"/>
+  <line x1="500" y1="190" x2="700" y2="240" stroke="#ffc107" stroke-width="1.5"/>
+
+  <!-- RAG Layer -->
+  <rect x="100" y="240" rx="8" ry="8" width="180" height="40" fill="#00d97e" opacity="0.8"/>
+  <text x="190" y="265" text-anchor="middle" fill="#16213e" font-size="11" font-weight="700">RAG Layer (8003) — WEEK 2</text>
+
+  <!-- Model APIs -->
+  <rect x="410" y="240" rx="8" ry="8" width="180" height="40" fill="#9b59b6" opacity="0.8"/>
+  <text x="500" y="265" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Model APIs (existing)</text>
+
+  <!-- Usage Analytics -->
+  <rect x="710" y="240" rx="8" ry="8" width="180" height="40" fill="#e94560" opacity="0.8"/>
+  <text x="800" y="265" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Usage Analytics — WEEK 2</text>
+
+  <!-- Agent Orchestrator -->
+  <rect x="250" y="320" rx="8" ry="8" width="500" height="50" fill="#ffc107" opacity="0.9"/>
+  <text x="500" y="345" text-anchor="middle" fill="#16213e" font-size="13" font-weight="800">Agent Orchestrator (port 8004) — WEEKS 3-4</text>
+  <text x="500" y="360" text-anchor="middle" fill="#16213e" font-size="9">RFP Pipeline | Client Discovery | SOW Generator | Custom Pipelines</text>
+
+  <line x1="190" y1="280" x2="400" y2="320" stroke="#00d97e" stroke-width="1.5"/>
+  <line x1="500" y1="280" x2="500" y2="320" stroke="#9b59b6" stroke-width="1.5"/>
+  <line x1="800" y1="280" x2="600" y2="320" stroke="#e94560" stroke-width="1.5"/>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#53d8fb"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+
+<!-- ==================== METRICS ==================== -->
+<div class="metric-row">
+  <div class="metric"><div class="num">4</div><div class="label">New Microservices</div></div>
+  <div class="metric"><div class="num">30</div><div class="label">Days to Deploy</div></div>
+  <div class="metric"><div class="num">3</div><div class="label">Pre-Built Pipelines</div></div>
+  <div class="metric"><div class="num">12</div><div class="label">PII Pattern Types</div></div>
+  <div class="metric"><div class="num">4</div><div class="label">Data Classification Tiers</div></div>
+  <div class="metric"><div class="num">0</div><div class="label">Models Re-Trained</div></div>
+</div>
+
+<!-- ==================== WEEK BY WEEK ==================== -->
+<div class="section-title">Week-by-Week Execution Plan</div>
+
+<!-- WEEK 1 -->
+<div class="week-box">
+  <h2>Week 1: Foundation — Smart Router + PII Scanner</h2>
+  <div class="week-dates">Days 1-7 | Deploy two middleware services between UI and model APIs</div>
+
+  <div class="deliverable">
+    <h3>Day 1-2: PII Scanner Deployment</h3>
+    <p>Deploy the PII detection middleware as the first layer every prompt passes through. Scans for SSNs, credit cards, API keys, medical records, emails, and phone numbers. Blocks or warns before any text reaches a model. Enforces data classification tiers: public, internal, confidential, restricted. Blocks DeepSeek and open-source models from receiving anything above "public" tier.</p>
+    <div class="code-ref">CODE: code/pii_scanner.py | 12 PII patterns | 4 data tiers | Model allowlists per tier</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 3-4: Smart Router Deployment</h3>
+    <p>Replace the static Model Advisor with an intelligent routing engine. Auto-selects the optimal model based on: task type (reasoning, code, creative, classification, translation), input language, file size, cost tier preference, and tool calling requirements. Scores all 30+ models and returns the best match + 3 alternatives. Employees no longer need to manually choose from 30+ models.</p>
+    <div class="code-ref">CODE: code/smart_router.py | 15+ model registry | Scoring algorithm | Language & file size filtering</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 5-7: Usage Analytics + Integration</h3>
+    <p>Every model interaction logged: user, model, task type, tokens, cost, team, data tier. Dashboard endpoints for usage by model, team, provider, and cost. Wire the router and scanner into the existing business@ API layer (v1.0.455). This is the visibility layer Slalom currently lacks entirely.</p>
+    <div class="code-ref">CODE: smart_router.py /log-usage + /analytics/summary endpoints</div>
+  </div>
+</div>
+
+<!-- WEEK 2 -->
+<div class="week-box">
+  <h2>Week 2: Knowledge — RAG Layer + Document Indexing</h2>
+  <div class="week-dates">Days 8-14 | Make every model Slalom-aware</div>
+
+  <div class="deliverable">
+    <h3>Day 8-10: RAG Service Deployment</h3>
+    <p>Deploy the retrieval-augmented generation service with permission-trimmed search. Index Summit Methodology docs, proposal templates, and engagement patterns. Every prompt can now be augmented with relevant Slalom institutional knowledge before hitting any model. Role-based access control: consultants see "all" docs, partners see everything, restricted docs require approval.</p>
+    <div class="code-ref">CODE: code/rag_layer.py | Permission-trimmed search | Auto-augmented prompts | Role hierarchy</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 10-12: Document Ingestion Pipeline</h3>
+    <p>Build the indexing pipeline to pull from existing Slalom knowledge stores: SharePoint (methodology docs), Salesforce (engagement summaries), Confluence (delivery templates). Each document tagged with source type, permissions, and metadata. Batch indexing endpoint handles bulk import.</p>
+    <div class="code-ref">CODE: rag_layer.py /index + /index/batch endpoints | Source: summit, proposal, sow, template, engagement</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 13-14: Seed Knowledge Base + Validate</h3>
+    <p>Pre-load foundational documents: Summit Methodology overview, AI Transformation Framework (with Slalom's own 2026 research stats), proposal templates, standard SOW sections. Validate retrieval quality with test queries. Tune relevance scoring.</p>
+    <div class="code-ref">CODE: rag_layer.py SUMMIT_SEED_DOCS | 3 seed documents included | Extensible to hundreds</div>
+  </div>
+</div>
+
+<!-- WEEK 3 -->
+<div class="week-box">
+  <h2>Week 3: Agents — Orchestrator + Pre-Built Pipelines</h2>
+  <div class="week-dates">Days 15-21 | From single-turn chat to multi-agent workflows</div>
+
+  <div class="deliverable">
+    <h3>Day 15-17: Agent Orchestrator Core</h3>
+    <p>Deploy the multi-agent pipeline engine. Chains multiple agents in sequence, each with its own role (Analyzer, Researcher, Writer, Reviewer, Synthesizer), model selection, RAG context injection, and PII scanning at every boundary. The orchestrator calls the router, scanner, and RAG layer automatically at each step. No manual model selection needed.</p>
+    <div class="code-ref">CODE: code/agent_orchestrator.py | 5 agent roles | Step dependency resolution | Full service mesh integration</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 17-19: RFP Response Pipeline (5 agents)</h3>
+    <p>First production pipeline: Analyze RFP → Search past proposals (RAG) → Draft response sections → Brand/legal review → Final synthesis. Five agents chained in sequence, each using the optimal model for its role. The RFP Analyzer extracts requirements as JSON. The Researcher searches past proposals (permission-trimmed). The Writer drafts using Claude Sonnet 4.5. The Reviewer checks brand compliance. The Synthesizer produces the final deliverable on Opus 4.5.</p>
+    <div class="code-ref">CODE: agent_orchestrator.py PIPELINES["rfp-response"] | 5 steps | Replaces existing GPT-4o Digital Expert</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 19-21: Client Discovery + SOW Generator Pipelines</h3>
+    <p><strong>Client Discovery (3 agents):</strong> Brief → Market Research (RAG) → Discovery Brief. Produces a 2-3 page partner-ready brief from a single paragraph of client context.<br><br>
+    <strong>SOW Generator (3 agents):</strong> Scope Intake → SOW Writer (RAG + Sonnet 4.5) → Legal Review. Generates a complete Statement of Work with standard Slalom sections, leaving [PLACEHOLDER] for rates/dates.</p>
+    <div class="code-ref">CODE: agent_orchestrator.py PIPELINES["client-discovery"] + PIPELINES["sow-generator"]</div>
+  </div>
+</div>
+
+<!-- WEEK 4 -->
+<div class="week-box">
+  <h2>Week 4: Polish — Dashboard, Deprecation, Launch</h2>
+  <div class="week-dates">Days 22-30 | Production hardening and rollout</div>
+
+  <div class="deliverable">
+    <h3>Day 22-24: Analytics Dashboard UI</h3>
+    <p>Build a visual dashboard on top of the /analytics/summary endpoint. Show: model usage distribution (pie chart), cost by team (bar chart), adoption over time (line chart), top users, PII block rate, and data tier compliance. Deploy as a new tab in the business@ UI alongside Chat, Prompt Library, and Digital Experts.</p>
+    <div class="code-ref">DATA SOURCE: smart_router.py /analytics/summary | Build with Chart.js or Recharts</div>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 24-26: Model Deprecation + Prompt Library Opening</h3>
+    <p><strong>Deprecate:</strong> Claude 3.7 Sonnet (superseded by 4/4.5), GPT-4o-mini (superseded by 5-mini), Llama 3 8B (250KB file limit, no tools), o1 (superseded by o3/o4-mini). Cut catalog from 30+ to ~20. Show deprecation warnings with migration paths.<br><br>
+    <strong>Open Prompt Library:</strong> Enable employee submissions with a review queue. Tag by vertical, task type, and model. This unlocks 11,000 consultants' institutional knowledge.</p>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 26-28: Upgrade Digital Experts to Frontier Models</h3>
+    <p>Migrate all 6 existing Digital Experts from GPT-4o/4o-mini to current models:
+    <br>- RFP Analyzer → Claude Sonnet 4.5 (better at structured extraction)
+    <br>- Customer Story Generator → GPT-5.1 (better at creative narrative)
+    <br>- Summit Advisor → Claude Opus 4.5 + RAG layer (methodology retrieval)
+    <br>- Brand Reviewer → GPT-5-mini (fast, accurate, cost-effective)
+    <br>- Digital Expert Architect → Claude Sonnet 4.5 (better system prompt generation)
+    <br>- Connexus Advisor → Smart Router integration (auto-routes instead of manual)</p>
+  </div>
+
+  <div class="deliverable">
+    <h3>Day 29-30: Production Launch + Documentation</h3>
+    <p>Deploy all 4 services via Docker Compose. Run load testing. Write internal announcement and training guide. Launch to pilot group (50 consultants in Minneapolis market), measure adoption for 2 weeks, then expand.</p>
+    <div class="code-ref">CODE: code/docker-compose.yml + code/Dockerfile | Single `docker compose up` deployment</div>
+  </div>
+</div>
+
+<!-- ==================== CODE INVENTORY ==================== -->
+<div class="section-title">Code Inventory — Ships With This Plan</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Service</th>
+      <th>Port</th>
+      <th>Week</th>
+      <th>Lines</th>
+      <th>What It Does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>smart_router.py</code></td>
+      <td>Smart Router + Analytics</td>
+      <td>8001</td>
+      <td><span class="badge badge-green">Week 1</span></td>
+      <td>~220</td>
+      <td>Auto-selects optimal model. Logs all usage. Analytics dashboard data.</td>
+    </tr>
+    <tr>
+      <td><code>pii_scanner.py</code></td>
+      <td>PII Scanner + Data Tiers</td>
+      <td>8002</td>
+      <td><span class="badge badge-green">Week 1</span></td>
+      <td>~200</td>
+      <td>Detects 12 PII types. 4 data classification tiers. Model allowlists.</td>
+    </tr>
+    <tr>
+      <td><code>rag_layer.py</code></td>
+      <td>RAG Knowledge Base</td>
+      <td>8003</td>
+      <td><span class="badge badge-yellow">Week 2</span></td>
+      <td>~200</td>
+      <td>Indexes Slalom docs. Permission-trimmed search. Augmented prompts.</td>
+    </tr>
+    <tr>
+      <td><code>agent_orchestrator.py</code></td>
+      <td>Multi-Agent Pipelines</td>
+      <td>8004</td>
+      <td><span class="badge badge-blue">Week 3</span></td>
+      <td>~350</td>
+      <td>3 pre-built pipelines (RFP, Discovery, SOW). 5 agent roles. Full mesh.</td>
+    </tr>
+    <tr>
+      <td><code>docker-compose.yml</code></td>
+      <td>Deployment</td>
+      <td>all</td>
+      <td><span class="badge badge-blue">Week 4</span></td>
+      <td>~30</td>
+      <td>Single command deployment: <code>docker compose up</code></td>
+    </tr>
+    <tr>
+      <td><code>Dockerfile</code></td>
+      <td>Container</td>
+      <td>-</td>
+      <td><span class="badge badge-blue">Week 4</span></td>
+      <td>~6</td>
+      <td>Python 3.12 slim image with FastAPI</td>
+    </tr>
+    <tr>
+      <td><code>requirements.txt</code></td>
+      <td>Dependencies</td>
+      <td>-</td>
+      <td><span class="badge badge-green">Week 1</span></td>
+      <td>5</td>
+      <td>FastAPI, uvicorn, httpx, pydantic</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== BEFORE / AFTER ==================== -->
+<div class="section-title">Before vs. After — 30 Days</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:30%;">Capability</th>
+      <th style="width:35%;">Today (business@ v1.0.455)</th>
+      <th style="width:35%;">Day 30 (with Intelligence Layer)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Model Selection</strong></td>
+      <td><span class="badge badge-red">Manual</span> — employee picks from 30+ models</td>
+      <td><span class="badge badge-green">Auto-routed</span> — optimal model selected by task, language, file, cost</td>
+    </tr>
+    <tr>
+      <td><strong>PII Protection</strong></td>
+      <td><span class="badge badge-red">None</span> — anyone can paste anything into any model</td>
+      <td><span class="badge badge-green">12-pattern scanner</span> — blocks SSNs, credit cards, API keys, PHI</td>
+    </tr>
+    <tr>
+      <td><strong>Data Classification</strong></td>
+      <td><span class="badge badge-red">None</span> — DeepSeek gets same access as GPT-5</td>
+      <td><span class="badge badge-green">4 tiers</span> — public/internal/confidential/restricted with model allowlists</td>
+    </tr>
+    <tr>
+      <td><strong>Usage Analytics</strong></td>
+      <td><span class="badge badge-red">Blind</span> — no visibility into what models are used</td>
+      <td><span class="badge badge-green">Full dashboard</span> — model, team, cost, token, and compliance metrics</td>
+    </tr>
+    <tr>
+      <td><strong>Institutional Knowledge</strong></td>
+      <td><span class="badge badge-red">Zero</span> — every conversation starts from scratch</td>
+      <td><span class="badge badge-green">RAG-augmented</span> — Summit methodology, proposals, templates indexed</td>
+    </tr>
+    <tr>
+      <td><strong>Agent Workflows</strong></td>
+      <td><span class="badge badge-red">Single-turn</span> — 6 Digital Experts, no chaining</td>
+      <td><span class="badge badge-green">Multi-agent pipelines</span> — RFP (5 agents), Discovery (3), SOW (3)</td>
+    </tr>
+    <tr>
+      <td><strong>Digital Expert Models</strong></td>
+      <td><span class="badge badge-yellow">GPT-4o</span> — 2 generations behind</td>
+      <td><span class="badge badge-green">Frontier</span> — Sonnet 4.5, Opus 4.5, GPT-5.1 per task</td>
+    </tr>
+    <tr>
+      <td><strong>Prompt Library</strong></td>
+      <td><span class="badge badge-yellow">Read-only</span> — employees can't contribute</td>
+      <td><span class="badge badge-green">Open</span> — employee submissions with review queue</td>
+    </tr>
+    <tr>
+      <td><strong>Model Catalog</strong></td>
+      <td><span class="badge badge-yellow">30+ models</span> — decision paralysis</td>
+      <td><span class="badge badge-green">~20 models</span> — legacy deprecated, smart routing handles selection</td>
+    </tr>
+    <tr>
+      <td><strong>Compliance Posture</strong></td>
+      <td><span class="badge badge-red">Gaps</span> — no audit trail, no PII gates</td>
+      <td><span class="badge badge-green">Auditable</span> — every interaction logged, PII blocked, data tiers enforced</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== INVESTMENT ==================== -->
+<div class="section-title">Investment & ROI</div>
+
+<div class="cards">
+  <div class="card">
+    <h3>Engineering Effort</h3>
+    <ul>
+      <li>2 engineers, 30 days (320 person-hours)</li>
+      <li>All 4 services: ~1,000 lines of Python total</li>
+      <li>FastAPI + Docker — standard Slalom tech stack</li>
+      <li>No model training or fine-tuning required</li>
+      <li>Integrates with existing business@ API (v1.0.455)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Expected Impact</h3>
+    <ul>
+      <li>RFP response time: days → hours (5-agent pipeline)</li>
+      <li>Model selection time: minutes → zero (auto-routing)</li>
+      <li>PII exposure risk: unknown → measured and blocked</li>
+      <li>Cost visibility: blind → per-model, per-team tracking</li>
+      <li>Knowledge reuse: 0% → every prompt RAG-augmented</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Risk Mitigation</h3>
+    <ul>
+      <li>All services are middleware — no changes to existing models or APIs</li>
+      <li>Docker Compose = one command deploy, one command rollback</li>
+      <li>Pilot with 50 Minneapolis consultants before org-wide</li>
+      <li>Each week is independently deployable — value from Day 3</li>
+      <li>If any service fails, business@ continues to work as-is</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== FINAL BOX ==================== -->
+<div class="final-box">
+  <h2>Eric — The Point</h2>
+  <p>
+    Slalom built a model catalog. The market in March 2026 requires an intelligence platform. The gap between those two things is exactly what's in this repo: 4 Python services, ~1,000 lines of code, deployable in 30 days.
+  </p>
+  <p style="margin-top:12px;">
+    The code is already written. The architecture is already designed. The plan is already scoped. What's missing is a decision.
+  </p>
+  <p style="margin-top:12px;">
+    This entire analysis — the platform audit, the gap scorecard, the knowledge graph, the 30-day plan, and all the production code — was produced by one person in one session using Claude Code. That's not a pitch about AI's potential. That's a proof of what's already possible.
+  </p>
+  <p style="margin-top:16px; color:#ffc107; font-weight:700;">
+    TGIF. Let's build it. — Dan #Minneapolis
+  </p>
+  <p style="margin-top:12px; font-size:12px; color:#a0a0c0;">
+    <a href="index.html">← Back to Platform Analysis</a> &nbsp;|&nbsp;
+    <a href="https://github.com/Yarmoluk/slalom-business-at-analysis/tree/main/code">View All Code on GitHub</a>
+  </p>
+</div>
+
+</div>
+
+<button class="no-print" onclick="window.print()">Save as PDF</button>
+
+</body>
+</html>

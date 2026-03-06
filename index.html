@@ -3,779 +3,817 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slalom Consulting | Strategic Intelligence Brief</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Slalom business@ Platform - Knowledge Graph & Analysis for Eric</title>
 <style>
-  :root {
-    --navy: #0B1426;
-    --navy-light: #162040;
-    --accent: #4F8EF7;
-    --red: #EF4444;
-    --red-bg: #FEF2F2;
-    --orange: #F59E0B;
-    --orange-bg: #FFFBEB;
-    --green: #10B981;
-    --green-bg: #ECFDF5;
-    --blue-bg: #EFF6FF;
-    --slate: #64748B;
-    --slate-light: #94A3B8;
-    --border: #E2E8F0;
-    --bg: #F8FAFC;
-    --surface: #FFFFFF;
-  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 9.5pt;
-    line-height: 1.5;
-    color: #1E293B;
-    background: #CBD5E1;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-    -webkit-font-smoothing: antialiased;
   }
-  @page { size: letter; margin: 0.45in 0.55in; }
-  .page {
-    width: 8.5in; min-height: 11in; margin: 0.3in auto;
-    background: var(--surface); padding: 0.5in 0.6in;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12); position: relative;
+
+  .header {
+    background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
+    padding: 40px 60px;
+    border-bottom: 3px solid #e94560;
   }
+  .header h1 { font-size: 28px; color: #fff; margin-bottom: 6px; }
+  .header .subtitle { font-size: 14px; color: #a0a0c0; }
+  .header .date { font-size: 12px; color: #e94560; margin-top: 8px; }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 30px 40px; }
+
+  .section-title {
+    font-size: 18px; font-weight: 700; color: #e94560;
+    border-bottom: 2px solid #e94560; padding-bottom: 6px;
+    margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .section-subtitle {
+    font-size: 14px; color: #a0a0c0; margin: -14px 0 20px 0; font-style: italic;
+  }
+
+  .graph-container {
+    background: #16213e; border-radius: 12px; padding: 20px;
+    margin-bottom: 30px; border: 1px solid #0f3460;
+    overflow-x: auto;
+  }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
+  .card {
+    background: #16213e; border-radius: 10px; padding: 20px;
+    border: 1px solid #0f3460; transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #e94560; }
+  .card h3 { font-size: 15px; color: #53d8fb; margin-bottom: 10px; }
+  .card p { font-size: 13px; color: #c0c0d8; line-height: 1.6; margin-bottom: 8px; }
+  .card ul { list-style: none; padding: 0; }
+  .card li { font-size: 13px; line-height: 1.7; padding-left: 14px; position: relative; color: #c0c0d8; }
+  .card li::before { content: "~"; position: absolute; left: 0; color: #e94560; font-weight: bold; }
+
+  .highlight { border-left: 4px solid #00d97e; }
+  .deficiency { border-left: 4px solid #ff6b6b; }
+  .opportunity { border-left: 4px solid #ffc107; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 3px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .tag-highlight { background: #00d97e22; color: #00d97e; border: 1px solid #00d97e44; }
+  .tag-deficiency { background: #ff6b6b22; color: #ff6b6b; border: 1px solid #ff6b6b44; }
+  .tag-info { background: #53d8fb22; color: #53d8fb; border: 1px solid #53d8fb44; }
+  .tag-warning { background: #ffc10722; color: #ffc107; border: 1px solid #ffc10744; }
+
+  .model-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 12px; }
+  .model-table th {
+    background: #0f3460; color: #53d8fb; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 10px 12px; text-align: left; border-bottom: 2px solid #e94560;
+  }
+  .model-table td { padding: 8px 12px; border-bottom: 1px solid #1a1a3e; color: #c0c0d8; }
+  .model-table tr:hover td { background: #1a1a3e; }
+  .badge {
+    display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600;
+  }
+  .badge-green { background: #00d97e22; color: #00d97e; }
+  .badge-yellow { background: #ffc10722; color: #ffc107; }
+  .badge-red { background: #ff6b6b22; color: #ff6b6b; }
+
+  .erik-box {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 2px solid #e94560; border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 30px;
+  }
+  .erik-box h2 { color: #e94560; font-size: 20px; margin-bottom: 14px; }
+  .erik-box .point { margin-bottom: 16px; }
+  .erik-box .point-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .erik-box .point-body { font-size: 13px; color: #c0c0d8; line-height: 1.6; }
+
+  .stats-bar { display: flex; gap: 16px; margin-bottom: 30px; flex-wrap: wrap; }
+  .stat {
+    background: #16213e; border-radius: 8px; padding: 16px 20px;
+    flex: 1; min-width: 120px; text-align: center; border: 1px solid #0f3460;
+  }
+  .stat .num { font-size: 26px; font-weight: 700; color: #53d8fb; }
+  .stat .label { font-size: 10px; color: #a0a0c0; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  .data-stat {
+    display: inline-block; background: #e9456022; color: #e94560;
+    font-weight: 700; padding: 1px 6px; border-radius: 3px; font-size: 13px;
+  }
+
+  .expert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .expert-card {
+    background: #16213e; border-radius: 8px; padding: 16px; border: 1px solid #0f3460;
+  }
+  .expert-card h4 { font-size: 13px; color: #53d8fb; margin-bottom: 6px; }
+  .expert-card .model-badge {
+    font-size: 10px; background: #0f3460; color: #a0a0c0; padding: 2px 8px;
+    border-radius: 3px; display: inline-block; margin-bottom: 8px;
+  }
+  .expert-card p { font-size: 12px; color: #a0a0c0; line-height: 1.5; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  .no-print {
+    position: fixed; bottom: 20px; right: 20px;
+    background: #e94560; color: #fff; border: none; padding: 10px 20px;
+    border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;
+    box-shadow: 0 4px 12px rgba(233,69,96,0.4);
+  }
+  .no-print:hover { background: #d63050; }
+
   @media print {
-    body { background: none; }
-    .page { background: none; box-shadow: none; padding: 0; width: 100%; min-height: auto; margin: 0; }
-    .no-print { display: none !important; }
-    .page-break { page-break-before: always; }
+    .no-print { display: none; }
+    body { background: #fff; color: #222; }
+    .header { background: #f5f5f5; border-bottom-color: #e94560; }
+    .header h1 { color: #222; }
+    .card, .graph-container, .stat, .erik-box, .expert-card { background: #f9f9f9; border-color: #ddd; }
+    .section-title { color: #c0392b; border-color: #c0392b; }
+    .card h3, .expert-card h4 { color: #2c3e50; }
   }
-
-  /* Cover */
-  .cover-page {
-    display: flex; flex-direction: column; min-height: 9.8in;
-    background: linear-gradient(160deg, var(--navy) 0%, #1A2744 40%, var(--navy-light) 100%);
-    padding: 0.7in; color: #fff; position: relative; overflow: hidden;
-  }
-  .cover-page::before {
-    content: ''; position: absolute; top: -120px; right: -120px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%); border-radius: 50%;
-  }
-  .cover-page::after {
-    content: ''; position: absolute; bottom: -80px; left: -80px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%); border-radius: 50%;
-  }
-  .cover-top { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 1; }
-  .cover-bottom { position: relative; z-index: 1; }
-  .cover-classification {
-    display: inline-block; font-size: 7pt; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--accent);
-    background: rgba(79,142,247,0.12); padding: 4px 14px; border-radius: 2px;
-    border: 1px solid rgba(79,142,247,0.25); margin-bottom: 28px;
-  }
-  .cover-title { font-size: 36pt; font-weight: 900; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 6px; }
-  .cover-subtitle { font-size: 14pt; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 40px; letter-spacing: 0.3px; }
-  .cover-line { width: 60px; height: 3px; background: var(--accent); margin-bottom: 24px; border-radius: 2px; }
-  .cover-meta-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
-    border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; margin-top: 20px;
-  }
-  .cover-meta-item { text-align: center; padding: 0 8px; border-right: 1px solid rgba(255,255,255,0.08); }
-  .cover-meta-item:last-child { border-right: none; }
-  .cover-meta-num { font-size: 20pt; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
-  .cover-meta-label { font-size: 6.5pt; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.45); margin-top: 2px; }
-  .cover-footer {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08);
-    margin-top: 30px; font-size: 7.5pt; color: rgba(255,255,255,0.35);
-  }
-  .cover-author { font-weight: 600; color: rgba(255,255,255,0.6); font-size: 8pt; }
-
-  /* Page header */
-  .page-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-bottom: 10px; margin-bottom: 16px; border-bottom: 1px solid var(--border);
-    font-size: 7pt; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1.5px;
-  }
-  .page-header-right { font-weight: 600; color: var(--slate); }
-
-  /* Headers */
-  h2 { font-size: 16pt; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; margin: 0 0 4px 0; line-height: 1.2; }
-  .section-num { font-size: 8pt; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px; }
-  .section-divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin: 8px 0 16px 0; }
-  h3 { font-size: 10.5pt; font-weight: 700; color: var(--navy); margin: 16px 0 6px 0; letter-spacing: -0.2px; }
-  h4 { font-size: 9pt; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.8px; margin: 12px 0 4px 0; }
-  p { margin-bottom: 6px; }
-  ul, ol { margin: 4px 0 8px 16px; }
-  li { margin-bottom: 3px; }
-
-  /* Tables */
-  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px 0; font-size: 8.5pt; border: 1px solid var(--border); overflow: hidden; }
-  th { background: var(--navy); color: #fff; font-weight: 600; text-align: left; padding: 6px 10px; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.8px; }
-  td { padding: 5px 10px; border-bottom: 1px solid #F1F5F9; vertical-align: top; }
-  tr:nth-child(even) { background: #FAFBFC; }
-
-  /* Callouts */
-  .callout { border-radius: 6px; padding: 10px 14px; margin: 10px 0; font-size: 8.5pt; line-height: 1.5; }
-  .callout-critical { background: var(--red-bg); border-left: 4px solid var(--red); }
-  .callout-warning { background: var(--orange-bg); border-left: 4px solid var(--orange); }
-  .callout-insight { background: var(--blue-bg); border-left: 4px solid var(--accent); }
-  .callout-opportunity { background: var(--green-bg); border-left: 4px solid var(--green); }
-  .callout-label { font-size: 7pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3px; display: block; }
-  .callout-critical .callout-label { color: var(--red); }
-  .callout-warning .callout-label { color: var(--orange); }
-  .callout-insight .callout-label { color: var(--accent); }
-  .callout-opportunity .callout-label { color: var(--green); }
-
-  /* Badges */
-  .badge { display: inline-block; font-size: 6.5pt; font-weight: 700; padding: 2px 7px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-  .badge-critical { background: var(--red); color: #fff; }
-  .badge-high { background: #EA580C; color: #fff; }
-  .badge-medium { background: var(--orange); color: #fff; }
-  .badge-low { background: var(--green); color: #fff; }
-
-  /* KPI */
-  .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 12px 0; }
-  .kpi-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; text-align: center; }
-  .kpi-card .num { font-size: 20pt; font-weight: 900; color: var(--navy); letter-spacing: -1px; line-height: 1.1; }
-  .kpi-card .num.red { color: var(--red); }
-  .kpi-card .num.green { color: var(--green); }
-  .kpi-card .label { font-size: 6.5pt; text-transform: uppercase; letter-spacing: 1.2px; color: var(--slate); margin-top: 2px; font-weight: 600; }
-
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-
-  .verdict-box { background: var(--navy); color: #fff; border-radius: 8px; padding: 16px 20px; margin: 14px 0; font-size: 9pt; line-height: 1.55; }
-  .verdict-box .verdict-title { font-size: 8pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-
-  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 40px; margin: 16px 0; }
-  .toc-item { display: flex; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #F1F5F9; font-size: 9pt; }
-  .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 8pt; font-weight: 500; color: var(--accent); width: 28px; flex-shrink: 0; }
-  .toc-label { font-weight: 500; color: var(--navy); }
-
-  .check-list { list-style: none; margin-left: 0; }
-  .check-list li { padding-left: 16px; position: relative; }
-  .check-list li::before { content: ''; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 50%; }
-  .check-list .strength::before { background: var(--green); }
-  .check-list .weakness::before { background: var(--red); }
-
-  .page-break { page-break-before: always; }
-  strong { font-weight: 700; }
-
-  .save-btn {
-    position: fixed; top: 20px; right: 20px; z-index: 999;
-    background: var(--navy); color: #fff; border: none; padding: 12px 24px;
-    font-family: 'Inter', sans-serif; font-size: 9pt; font-weight: 600;
-    border-radius: 8px; cursor: pointer; box-shadow: 0 4px 16px rgba(11,20,38,0.3);
-    transition: all 0.2s; letter-spacing: 0.3px;
-  }
-  .save-btn:hover { background: var(--accent); transform: translateY(-1px); }
-
-  /* Proof banner */
-  .proof-banner {
-    background: linear-gradient(135deg, #0B1426, #1A2744);
-    border: 1px solid rgba(79,142,247,0.2);
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    color: #fff;
-  }
-  .proof-banner .pb-label {
-    font-size: 6.5pt; font-weight: 800; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
-  }
-  .proof-banner .pb-stats {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px;
-  }
-  .proof-banner .pb-stat { text-align: center; }
-  .proof-banner .pb-num { font-size: 16pt; font-weight: 900; color: var(--accent); }
-  .proof-banner .pb-desc { font-size: 6.5pt; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); }
 </style>
 </head>
 <body>
 
-<button class="save-btn no-print" onclick="window.print()">Save as PDF</button>
-
-<!-- ═══ COVER ═══ -->
-<div class="page" style="padding: 0;">
-  <div class="cover-page">
-    <div class="cover-top">
-      <div class="cover-classification">Strategic Intelligence Brief</div>
-      <h1 class="cover-title">Slalom<br>Consulting</h1>
-      <div class="cover-subtitle">Complete Strategic Analysis &amp; Market Position Assessment</div>
-      <div class="cover-line"></div>
-      <div style="background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.15); border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-size: 8pt; color: rgba(255,255,255,0.6);">
-        <div style="font-size: 6.5pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;">Production Metadata</div>
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
-          <div><span style="font-size: 14pt; font-weight: 800; color: var(--accent); display: block;">4</span><span style="font-size: 6pt; letter-spacing: 1.5px; text-transform: uppercase;">Parallel Agents</span></div>
-          <div><span style="font-size: 14pt; font-weight: 800; color: var(--accent); display: block;">75+</span><span style="font-size: 6pt; letter-spacing: 1.5px; text-transform: uppercase;">Sources Analyzed</span></div>
-          <div><span style="font-size: 14pt; font-weight: 800; color: var(--accent); display: block;">1</span><span style="font-size: 6pt; letter-spacing: 1.5px; text-transform: uppercase;">Person + Mac Mini</span></div>
-          <div><span style="font-size: 14pt; font-weight: 800; color: var(--accent); display: block;">&lt;1hr</span><span style="font-size: 6pt; letter-spacing: 1.5px; text-transform: uppercase;">Total Production</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="cover-bottom">
-      <div class="cover-meta-grid">
-        <div class="cover-meta-item"><div class="cover-meta-num">$3B</div><div class="cover-meta-label">Revenue (Est.)</div></div>
-        <div class="cover-meta-item"><div class="cover-meta-num">12K</div><div class="cover-meta-label">Employees</div></div>
-        <div class="cover-meta-item"><div class="cover-meta-num">45+</div><div class="cover-meta-label">Markets</div></div>
-        <div class="cover-meta-item"><div class="cover-meta-num">400+</div><div class="cover-meta-label">Tech Partners</div></div>
-        <div class="cover-meta-item"><div class="cover-meta-num">53</div><div class="cover-meta-label">Global Offices</div></div>
-      </div>
-      <div class="cover-footer">
-        <div><div class="cover-author">Daniel Yarmoluk</div><div>Multi-Agent Intelligence Architecture</div></div>
-        <div style="text-align: right;"><div>March 6, 2026</div><div>Seattle, WA &bull; Privately Held &bull; Founded 2001</div></div>
-      </div>
-    </div>
+<div class="header">
+  <h1>Slalom business@ Platform - Complete Analysis</h1>
+  <div class="subtitle">Knowledge Graph | Model Inventory | Digital Experts | Prompt Library | Summit Methodology | Gaps & Opportunities</div>
+  <div class="date">Prepared for Mr. Eric Olson | March 6, 2026</div>
+  <div style="margin-top:12px; background:#e9456033; border:1px solid #e94560; border-radius:6px; padding:10px 16px; display:inline-block;">
+    <span style="color:#ffc107; font-weight:700; font-size:13px;">Built in 8 minutes by Dan using Claude Code (Opus 4.6)</span>
+    <span style="color:#a0a0c0; font-size:11px; margin-left:8px;">| Full platform analysis, knowledge graph, gap assessment, and strategic recommendations — from raw screenshots to finished deliverable</span>
   </div>
 </div>
 
-<!-- ═══ TOC ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Contents</span></div>
-  <span class="section-num">Navigation</span>
-  <h2>Table of Contents</h2>
-  <div class="section-divider"></div>
-  <div class="toc-grid">
-    <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Executive Summary</span></div>
-    <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">AI Strategy &amp; IP Audit</span></div>
-    <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Company Identity &amp; Operating Model</span></div>
-    <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Culture &amp; Talent Assessment</span></div>
-    <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Service Lines &amp; Practices</span></div>
-    <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Competitive Landscape</span></div>
-    <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Partnership Ecosystem</span></div>
-    <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">Industry Disruption Outlook</span></div>
-    <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Geographic Footprint</span></div>
-    <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Strategic Blind Spots</span></div>
-    <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Revenue &amp; Client Profile</span></div>
-    <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">About the Analyst</span></div>
-  </div>
+<div class="container">
 
-  <div style="margin-top: 24px;">
-    <span class="section-num">Methodology</span>
-    <h3>How This Report Was Built</h3>
-    <div class="section-divider"></div>
-    <p>This document was produced in <strong>under one hour</strong> by <strong>one person on a Mac Mini</strong> using a proprietary multi-agent intelligence architecture. Four specialized AI agents ran in parallel, each scanning distinct research domains and returning structured findings that were synthesized into this report.</p>
-    <div class="grid-2" style="margin-top: 10px;">
-      <div class="callout callout-insight" style="margin: 0;"><span class="callout-label">Agent 1 &mdash; Organizational Intelligence</span>Service lines, Build Centers, geographic footprint, partnership tiers, staffing model</div>
-      <div class="callout callout-insight" style="margin: 0;"><span class="callout-label">Agent 2 &mdash; Competitive Threats</span>Direct competitors, Big 4 pressure, offshore pricing, hyperscaler competition</div>
-      <div class="callout callout-insight" style="margin: 0;"><span class="callout-label">Agent 3 &mdash; Culture &amp; Talent</span>Glassdoor trajectory, layoff timeline, compensation analysis, attrition patterns</div>
-      <div class="callout callout-insight" style="margin: 0;"><span class="callout-label">Agent 4 &mdash; AI Strategy &amp; Risk</span>Proprietary IP audit, vendor dependencies, agentic AI positioning, disruption mapping</div>
-    </div>
-    <p style="margin-top: 10px; color: var(--slate); font-size: 8pt;">75+ sources analyzed &bull; Glassdoor, Fishbowl, Blind, Comparably, Gartner, HBR, GeekWire, AWS, Salesforce, Snowflake, LinkedIn &bull; Timestamp: March 6, 2026 12:30 PM CST</p>
-  </div>
+<!-- ==================== PLATFORM OVERVIEW ==================== -->
+<div class="section-title">Platform Overview</div>
+<div class="stats-bar">
+  <div class="stat"><div class="num">30+</div><div class="label">AI Models</div></div>
+  <div class="stat"><div class="num">6</div><div class="label">Providers</div></div>
+  <div class="stat"><div class="num">6</div><div class="label">Digital Experts</div></div>
+  <div class="stat"><div class="num">4</div><div class="label">Platform Features</div></div>
+  <div class="stat"><div class="num">~$2.5B</div><div class="label">Slalom Revenue</div></div>
+  <div class="stat"><div class="num">11K+</div><div class="label">Employees</div></div>
+  <div class="stat"><div class="num">80</div><div class="label">Global Offices</div></div>
 </div>
 
-<!-- ═══ 01. EXECUTIVE SUMMARY ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 01</span></div>
-  <span class="section-num">Section 01</span>
-  <h2>Executive Summary</h2>
-  <div class="section-divider"></div>
-
-  <div class="kpi-strip">
-    <div class="kpi-card"><div class="num">$3B</div><div class="label">Est. Revenue</div></div>
-    <div class="kpi-card"><div class="num">12K</div><div class="label">Employees</div></div>
-    <div class="kpi-card"><div class="num red">3.6</div><div class="label">Glassdoor (was 4.5)</div></div>
-    <div class="kpi-card"><div class="num">~4%</div><div class="label">Data Scientists</div></div>
-    <div class="kpi-card"><div class="num">400+</div><div class="label">Tech Partners</div></div>
+<div class="cards">
+  <div class="card">
+    <h3>What is business@?</h3>
+    <p>Slalom's internal AI chat platform ("Slalom Chat") providing employees access to 30+ LLMs from 6 providers through a unified interface. Built on top of OpenAI, Amazon Bedrock, and Google Gemini APIs. Features include Chat, Chat History, Prompt Library, Digital Experts, and Model Advisor.</p>
+    <p>Version: ui v1.1.308 | api v1.0.455 (still in beta)</p>
   </div>
-
-  <div class="verdict-box">
-    <div class="verdict-title">Strategic Assessment</div>
-    Slalom Consulting is a $3B, privately held technology and business consulting firm with elite vendor partnerships and a distinctive local-market delivery model. However, the firm faces compounding structural challenges: its AI offerings are built entirely on vendor platforms with no proprietary IP, the 2023 layoffs shattered its "people over profits" brand identity, and its billable-hours revenue model is increasingly misaligned with an industry shifting toward outcome-based delivery. Slalom occupies a precarious middle &mdash; too expensive for mid-market, too small for enterprise transformations, and too vendor-dependent for AI credibility. The firm's trajectory over the next 12&ndash;24 months will be determined by whether it can pivot from labor arbitrage to genuine technology differentiation.
-  </div>
-
-  <div class="grid-2" style="margin-top: 12px;">
-    <div>
-      <h4>Core Strengths</h4>
-      <ul class="check-list">
-        <li class="strength">Scale: 45 markets, 12 countries, deep local relationships</li>
-        <li class="strength">Elite vendor partnerships (AWS POTY, 5x Snowflake POTY)</li>
-        <li class="strength">Slalom Build: 16 engineering centers</li>
-        <li class="strength">50%+ revenue from technology services</li>
-        <li class="strength">No-travel, local-delivery model</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Key Vulnerabilities</h4>
-      <ul class="check-list">
-        <li class="weakness">No proprietary AI platform, model, or data IP</li>
-        <li class="weakness">~80% of work perceived as staff augmentation</li>
-        <li class="weakness">Glassdoor crashed from 4.5 to 3.6</li>
-        <li class="weakness">Rates ($200&ndash;275/hr) undercut 75%+ by offshore</li>
-        <li class="weakness">6&ndash;18 month engagements vs. weeks demanded</li>
-        <li class="weakness">Hyperscaler partners becoming competitors</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ 02. COMPANY IDENTITY ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 02</span></div>
-  <span class="section-num">Section 02</span>
-  <h2>Company Identity &amp; Operating Model</h2>
-  <div class="section-divider"></div>
-
-  <table>
-    <tr><th style="width:30%">Attribute</th><th>Detail</th></tr>
-    <tr><td><strong>Founded</strong></td><td>2001, Seattle (originally "Accounting Quest, LLC" in Denver, 1993)</td></tr>
-    <tr><td><strong>Founder / CEO</strong></td><td>Brad Jackson</td></tr>
-    <tr><td><strong>President</strong></td><td>Tony Rojas</td></tr>
-    <tr><td><strong>Structure</strong></td><td>Converted LLC to C-Corp (Slalom, Inc.) January 2023. Privately held. ~15 owners.</td></tr>
-    <tr><td><strong>Mission</strong></td><td>"Love Your Future"</td></tr>
-    <tr><td><strong>Revenue</strong></td><td>~$2.5&ndash;3.0B (2025 estimates)</td></tr>
-    <tr><td><strong>Employees</strong></td><td>~12,000 (post-layoffs; was 13,000+)</td></tr>
-    <tr><td><strong>Offices</strong></td><td>53 offices, 12 countries, 45+ markets</td></tr>
-    <tr><td><strong>Equity</strong></td><td>Limited: MDs invest ~$100K; high performers ~$25K buy-in. Not broad.</td></tr>
-    <tr><td><strong>Levels</strong></td><td>Associate &rarr; Consultant &rarr; Sr. Consultant &rarr; Principal &rarr; Sr. Principal &rarr; Director &rarr; Sr. Director &rarr; MD</td></tr>
-  </table>
-
-  <h3>The Local Market Model</h3>
-  <ul>
-    <li><strong>Own GM</strong> per market with P&amp;L and local hiring authority</li>
-    <li><strong>Local staffing</strong> &mdash; no fly-in delivery</li>
-    <li><strong>Market autonomy</strong> &mdash; local leaders decide</li>
-    <li><strong>Cross-market staffing</strong> as overflow before external hiring</li>
-    <li><strong>Global practices</strong> provide frameworks and specialized expertise</li>
-  </ul>
-
-  <div class="callout callout-insight">
-    <span class="callout-label">Strategic Insight</span>
-    The local model creates stickier relationships than Big 4 rotational staffing. But it also introduces <strong>fragmentation</strong>: markets compete for talent, delivery quality varies, and there is no unified AI go-to-market. A client in Dallas gets a different Slalom than Seattle.
-  </div>
-
-  <h3>Slalom Build (2018)</h3>
-  <p><strong>16 global Build Centers</strong> for custom software, cloud-native products, platform engineering. Three pillars: <strong>Builders</strong> (dedicated engineering), <strong>Build Centers</strong> (in-timezone hubs), <strong>Elasticity</strong> (scale per phase).</p>
-
-  <div class="callout callout-warning">
-    <span class="callout-label">Observation</span>
-    Build is the firm's most defensible asset, but it's <strong>undermarketed</strong>. Most buyers still think "Slalom = staff aug."
-  </div>
-</div>
-
-<!-- ═══ 03. SERVICE LINES ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 03</span></div>
-  <span class="section-num">Section 03</span>
-  <h2>Service Lines &amp; Practice Architecture</h2>
-  <div class="section-divider"></div>
-
-  <table>
-    <tr><th>Service Line</th><th>Capabilities</th><th>Weight</th></tr>
-    <tr><td><strong>Strategy</strong></td><td>Business/customer/tech strategy, change mgmt, org effectiveness, M&amp;A</td><td>~15&ndash;20%</td></tr>
-    <tr><td><strong>Technology</strong></td><td>Cloud, DevOps/security, product eng, platform modernization</td><td>~25&ndash;30%</td></tr>
-    <tr><td><strong>Data &amp; Analytics</strong></td><td>Architecture, engineering, visualization, BI, governance</td><td>~15&ndash;20%</td></tr>
-    <tr><td><strong>AI</strong></td><td>ML, generative AI, AI strategy, process automation</td><td>~10&ndash;15%</td></tr>
-    <tr><td><strong>Experience Design</strong></td><td>UX/UI, service design, journey mapping</td><td>~5&ndash;10%</td></tr>
-    <tr><td><strong>Operations</strong></td><td>Process optimization, agile, PMOs, Salesforce</td><td>~10&ndash;15%</td></tr>
-    <tr><td><strong>Slalom Build</strong></td><td>Custom software, cloud-native, platform engineering</td><td>~10&ndash;15%</td></tr>
-  </table>
-
-  <h3>Industry Verticals</h3>
-  <table>
-    <tr><th>Vertical</th><th>Penetration</th></tr>
-    <tr><td>Financial Services</td><td>75% of Fortune 500 FS companies</td></tr>
-    <tr><td>Healthcare &amp; Life Sciences</td><td>9 of top 10 health plans, 10 of top 20 hospitals, 350+ life sciences</td></tr>
-    <tr><td>Retail, Travel &amp; Hospitality</td><td>All top 5 Fortune 500</td></tr>
-    <tr><td>Energy &amp; Utilities</td><td>Full spectrum including renewables</td></tr>
-    <tr><td>Public Sector</td><td>500+ agencies; OpenAI federal partner</td></tr>
-    <tr><td>Technology &amp; Media</td><td>Telecom, media, software</td></tr>
-  </table>
-
-  <h3>Workforce Composition</h3>
-  <table>
-    <tr><th>Category</th><th>Count</th><th>%</th><th>Notes</th></tr>
-    <tr><td>Total</td><td>~12,000</td><td>100%</td><td></td></tr>
-    <tr><td>"GenAI-trained"</td><td>6,000</td><td>~50%</td><td>Internal modules, not deep AI engineers</td></tr>
-    <tr><td>Data scientists</td><td>500</td><td>~4%</td><td>Actual deep AI/ML</td></tr>
-    <tr><td>Snowflake-certified</td><td>650+</td><td>~5%</td><td>Vendor-dependent</td></tr>
-    <tr><td>Traditional consulting</td><td>~5,500&ndash;6,000</td><td>~45&ndash;50%</td><td>Strategy, ops, org effectiveness</td></tr>
-  </table>
-
-  <div class="callout callout-warning">
-    <span class="callout-label">Key Finding</span>
-    The "6,000 GenAI-trained" marketing stat represents internal module completion, not engineering capability. Only <strong>~500 data scientists (~4%)</strong> have deep AI/ML skills.
-  </div>
-</div>
-
-<!-- ═══ 04. PARTNERSHIPS ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 04</span></div>
-  <span class="section-num">Section 04</span>
-  <h2>Partnership Ecosystem</h2>
-  <div class="section-divider"></div>
-
-  <table>
-    <tr><th>Partner</th><th>Tier</th><th>Key Stats</th><th>Risk</th></tr>
-    <tr><td><strong>AWS</strong></td><td>Premier Tier SI</td><td>13 POTY (2025); GenAI Consulting POTY 2024</td><td><span class="badge badge-critical">Critical</span></td></tr>
-    <tr><td><strong>Salesforce</strong></td><td>Summit; 1st Data Cloud SI</td><td>7,400+ projects; 11,500+ certs</td><td><span class="badge badge-medium">Medium</span></td></tr>
-    <tr><td><strong>Snowflake</strong></td><td>Elite</td><td>5x POTY; 650+ certified; 7 competencies</td><td><span class="badge badge-medium">Medium</span></td></tr>
-    <tr><td><strong>Google Cloud</strong></td><td>Premier</td><td>7x POTY; 2025 AI POTY (Public Sector)</td><td><span class="badge badge-high">High</span></td></tr>
-    <tr><td><strong>Microsoft</strong></td><td>Solutions Partner</td><td>20+ year partnership</td><td><span class="badge badge-high">High</span></td></tr>
-    <tr><td><strong>Databricks</strong></td><td>Premier/Elite</td><td>3 POTY at 2025 Summit</td><td><span class="badge badge-medium">Medium</span></td></tr>
-    <tr><td><strong>OpenAI</strong></td><td>Services Partner</td><td>Enterprise + US federal deployment</td><td><span class="badge badge-high">High</span></td></tr>
-  </table>
-
-  <div class="callout callout-critical">
-    <span class="callout-label">Structural Vendor Dependency</span>
-    Slalom's model is the implementation layer between vendors and enterprises. Three risks: <strong>(1)</strong> Vendors build self-service tools. <strong>(2)</strong> Vendors build ProServe (AWS doing this now). <strong>(3)</strong> AI agents automate implementation. AWS ProServe is actively building AI agents to automate migration by 2026&ndash;27.
-  </div>
-
-  <div class="grid-2">
-    <div class="callout callout-critical" style="margin: 0;"><span class="callout-label">AWS ProServe</span>Building AI agents to automate migration. The partner is becoming the competitor.</div>
-    <div class="callout callout-warning" style="margin: 0;"><span class="callout-label">Microsoft / Avanade</span>Microsoft co-owns Avanade (~$4B). Avanade is <strong>always</strong> preferred on Microsoft deals.</div>
-  </div>
-</div>
-
-<!-- ═══ 05-06. GEO + REVENUE ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Sections 05&ndash;06</span></div>
-  <span class="section-num">Section 05</span>
-  <h2>Geographic Footprint</h2>
-  <div class="section-divider"></div>
-
-  <p style="font-size: 8.5pt; color: var(--slate);">
-    <strong>US (~35+):</strong> Atlanta &bull; Austin &bull; Boston &bull; Charlotte &bull; Chicago &bull; Columbus &bull; DFW &bull; Denver &bull; Detroit &bull; Hartford &bull; Houston &bull; Indianapolis &bull; KC &bull; LA &bull; Miami &bull; Minneapolis &bull; Nashville &bull; NJ &bull; NYC &bull; OC &bull; Orlando &bull; Philly &bull; Phoenix &bull; Pittsburgh &bull; Portland &bull; Raleigh &bull; Sacramento &bull; San Diego &bull; SF &bull; <strong>Seattle (HQ)</strong> &bull; St. Louis &bull; Tampa &bull; DC
-  </p>
-  <table>
-    <tr><th>Region</th><th>Markets</th><th>Status</th></tr>
-    <tr><td>Canada</td><td>Calgary, Montreal, Toronto, Vancouver</td><td>Established</td></tr>
-    <tr><td>Europe</td><td>London, Manchester, Dublin, Munich</td><td>Established</td></tr>
-    <tr><td>APAC</td><td>Melbourne, Sydney, Auckland, Tokyo</td><td>Established</td></tr>
-    <tr><td>LATAM</td><td>Mexico (Sep 2024), Bogota + Medellin (Jan 2025)</td><td><span class="badge badge-medium">New</span></td></tr>
-  </table>
-
-  <span class="section-num" style="margin-top: 16px;">Section 06</span>
-  <h2>Revenue &amp; Client Profile</h2>
-  <div class="section-divider"></div>
-
-  <table>
-    <tr><th style="width:35%">Metric</th><th>Data</th></tr>
-    <tr><td>Revenue (2023)</td><td>~$2.0B</td></tr>
-    <tr><td>Revenue (2025 est.)</td><td>~$2.5&ndash;3.0B</td></tr>
-    <tr><td>Revenue model</td><td>T&amp;M dominant (billable hours &times; headcount)</td></tr>
-    <tr><td>Billing rates</td><td>~$200&ndash;275/hr</td></tr>
-    <tr><td>Gross margin</td><td>~73% ($60/hr cost vs. $225/hr bill)</td></tr>
-    <tr><td>Deal size</td><td>$500K&ndash;$5M typical; some $10M+</td></tr>
-    <tr><td>Duration</td><td>6&ndash;18 months</td></tr>
-    <tr><td>Client base</td><td>Fortune 1000, 500+ public agencies</td></tr>
-    <tr><td>Avg. total comp</td><td>~$111K (base ~$94K + ~$17K bonus)</td></tr>
-    <tr><td>PTO</td><td>7 holidays + 2 weeks (below average)</td></tr>
-  </table>
-
-  <div class="callout callout-critical">
-    <span class="callout-label">Revenue Quality</span>
-    ~80% of work is perceived as <strong>staff augmentation</strong> &mdash; commodity labor, not transformation consulting. First spend cut in downturns. Easiest to replace with offshore or AI.
-  </div>
-</div>
-
-<!-- ═══ 07. AI STRATEGY ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 07</span></div>
-  <span class="section-num">Section 07</span>
-  <h2>AI Strategy &amp; Proprietary IP Audit</h2>
-  <div class="section-divider"></div>
-
-  <h3>Proprietary Tools Assessment</h3>
-  <table>
-    <tr><th>Tool</th><th>Function</th><th>Proprietary?</th></tr>
-    <tr><td><strong>EnhanceIQ</strong></td><td>Role-by-role AI readiness</td><td><span class="badge badge-high">No</span> Built on Gemini</td></tr>
-    <tr><td><strong>Slalom Chat</strong></td><td>Internal AI assistant</td><td>Internal only</td></tr>
-    <tr><td><strong>AI Value Calculator</strong></td><td>ROI/TCO forecasting</td><td>Assessment template</td></tr>
-    <tr><td><strong>AI Accelerator</strong></td><td>Salesforce Data Cloud framework</td><td><span class="badge badge-high">No</span> Salesforce-dependent</td></tr>
-    <tr><td><strong>Agentforce Accelerator</strong></td><td>Salesforce Agentforce blueprints</td><td><span class="badge badge-high">No</span> Salesforce-dependent</td></tr>
-    <tr><td><strong>CoExpert</strong></td><td>AI for test engineers (2,700 users)</td><td>Semi &mdash; internal</td></tr>
-  </table>
-
-  <div class="callout callout-critical">
-    <span class="callout-label">IP Verdict</span>
-    No foundational models. No platform IP. No data moats. Every "proprietary tool" is a wrapper on vendor platforms. Compare: <strong>Palantir</strong> (Foundry/Gotham/AIP), <strong>West Monroe</strong> (Intellio), <strong>EY</strong> ($1B+/yr, 1,000+ agents), <strong>McKinsey</strong> (Lilli + 12,000 agents).
-  </div>
-
-  <h3>OpenAI Partnership (Aug 2025)</h3>
-  <p>ChatGPT Enterprise enablement, AI Solution Studio, role-based support, and US federal workforce deployment. Assessment: reseller/implementer role. No proprietary integration.</p>
-
-  <h3>Agentic AI Position</h3>
-  <ul>
-    <li>"2026: Year of the Agentic Enterprise" thought leadership</li>
-    <li>Multi-agent systems for back-office automation</li>
-    <li>Salesforce Agentforce implementation</li>
-    <li>EnhanceIQ "Agentize" tier</li>
-    <li>Claims 60% refactoring time reduction</li>
-  </ul>
-
-  <div class="callout callout-insight">
-    <span class="callout-label">Assessment</span>
-    Strong thought leadership. Thin technical differentiation. All agentic capabilities built on vendor platforms. No proprietary agent frameworks or orchestration layers.
-  </div>
-</div>
-
-<!-- ═══ 08. CULTURE ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 08</span></div>
-  <span class="section-num">Section 08</span>
-  <h2>Culture &amp; Talent Assessment</h2>
-  <div class="section-divider"></div>
-
-  <h3>Glassdoor Trajectory</h3>
-  <table>
-    <tr><th>Period</th><th>Rating</th><th>Event</th></tr>
-    <tr><td>2012&ndash;2022</td><td><strong style="color: var(--green);">4.5/5</strong></td><td>"Best Places to Work" 8 years. Fortune 100 Best 7&ndash;8 years.</td></tr>
-    <tr><td>Dec 2023</td><td style="color: var(--orange);">Declining</td><td>900 laid off (7%). "Most difficult decision in our history."</td></tr>
-    <tr><td>Apr 2024</td><td style="color: var(--orange);">Falling</td><td>35&ndash;40% of TA North America cut.</td></tr>
-    <tr><td>Jun 2024</td><td style="color: var(--red);">Falling</td><td>3.4% layoff. Promotion freeze. Bonus cuts.</td></tr>
-    <tr><td>2025</td><td style="color: var(--red);">Deteriorating</td><td>"High performers leaving in droves." PIP pipeline.</td></tr>
-    <tr><td>2026</td><td><strong style="color: var(--red);">3.6/5</strong></td><td>56% recommend. Nearly 1 full point below peak.</td></tr>
-  </table>
-
-  <div class="callout callout-critical">
-    <span class="callout-label">Cultural Fracture</span>
-    Built on "People over profits" and an explicit no-layoffs promise stated during every interview. After three rounds, both broken. "People over profits" now appears <strong>sarcastically</strong> in reviews. Bench time shifted from retention tool to PIP trigger &mdash; single most cited Glassdoor grievance.
-  </div>
-
-  <h3>Compensation vs. Competitors</h3>
-  <table>
-    <tr><th>Metric</th><th>Slalom</th><th>Accenture</th><th>Deloitte</th></tr>
-    <tr><td>Glassdoor</td><td style="color: var(--red);"><strong>3.6</strong></td><td>~4.0&ndash;4.2</td><td>~3.9&ndash;4.0</td></tr>
-    <tr><td>Base Comp</td><td>Below market</td><td>Higher</td><td>Higher</td></tr>
-    <tr><td>PTO</td><td>Below average</td><td>Standard</td><td>Standard</td></tr>
-    <tr><td>Equity</td><td>Limited buy-in</td><td>RSUs</td><td>Partner equity</td></tr>
-    <tr><td>Travel</td><td>Minimal</td><td>Heavy</td><td>Heavy</td></tr>
-  </table>
-
-  <div class="callout callout-warning">
-    <span class="callout-label">Talent Reversal</span>
-    75%+ of departures voluntary. Senior talent flowing to Accenture, Deloitte, client-side. The pipeline that historically flowed <strong>from</strong> Big 4 <strong>to</strong> Slalom is now <strong>reversing</strong>.
-  </div>
-</div>
-
-<!-- ═══ 09. COMPETITIVE ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 09</span></div>
-  <span class="section-num">Section 09</span>
-  <h2>Competitive Landscape</h2>
-  <div class="section-divider"></div>
-
-  <table>
-    <tr><th>Firm</th><th>Revenue</th><th>Advantage vs. Slalom</th></tr>
-    <tr><td><strong>Avanade</strong></td><td>~$4B+</td><td>Co-owned by Accenture + Microsoft. All Microsoft deals.</td></tr>
-    <tr><td><strong>Publicis Sapient</strong></td><td>~$2.5B</td><td>Creative + tech bundled.</td></tr>
-    <tr><td><strong>Thoughtworks</strong></td><td>~$1.1B</td><td>Engineering-first DNA. Superior tech credibility.</td></tr>
-    <tr><td><strong>West Monroe</strong></td><td>~$700M+</td><td>PE due diligence. NPS 85. Proprietary AI (Intellio).</td></tr>
-    <tr><td><strong>Credera</strong></td><td>~$500M</td><td>Forbes "World's Best" 4 years.</td></tr>
-    <tr><td><strong>Point B</strong></td><td>~$300M</td><td>Employee-owned. Pacific NW.</td></tr>
-  </table>
-
-  <h3>Big 4 Pressure</h3>
-  <table>
-    <tr><th>Vector</th><th>Impact</th></tr>
-    <tr><td>Scale</td><td>Deals &gt;$20M &mdash; Slalom outgunned.</td></tr>
-    <tr><td>Bundling</td><td>Audit/tax/advisory cross-sell.</td></tr>
-    <tr><td>AI Spend</td><td>EY: $1B+/yr. McKinsey: 12K agents. 100x outspend.</td></tr>
-    <tr><td>Down-Market</td><td>During slowdowns, Big 4 chase mid-market.</td></tr>
-  </table>
-
-  <h3>Offshore Price Gap</h3>
-  <table>
-    <tr><th>Provider</th><th>Rate</th><th>Delta</th></tr>
-    <tr><td>Infosys / TCS / Wipro</td><td>$25&ndash;50/hr</td><td><span class="badge badge-critical">75&ndash;85% cheaper</span></td></tr>
-    <tr><td>Cognizant</td><td>$30&ndash;60/hr</td><td><span class="badge badge-high">70&ndash;80% cheaper</span></td></tr>
-    <tr><td>LATAM Nearshore</td><td>$23&ndash;90/hr</td><td><span class="badge badge-high">60&ndash;75% cheaper</span></td></tr>
-  </table>
-
-  <h3>Deal Loss Patterns</h3>
-  <table>
-    <tr><th>Scenario</th><th>Severity</th><th>Cause</th></tr>
-    <tr><td>Staff aug perception</td><td><span class="badge badge-critical">Very High</span></td><td>~80% seen as bodies, not brains</td></tr>
-    <tr><td>Price</td><td><span class="badge badge-high">High</span></td><td>Offshore + mid-market squeeze</td></tr>
-    <tr><td>Scale</td><td><span class="badge badge-high">High</span></td><td>Can't resource 200+ programs</td></tr>
-    <tr><td>Speed</td><td><span class="badge badge-high">High</span></td><td>6&ndash;18 months vs. weeks</td></tr>
-  </table>
-</div>
-
-<!-- ═══ 10. DISRUPTION ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 10</span></div>
-  <span class="section-num">Section 10</span>
-  <h2>Industry Disruption Outlook</h2>
-  <div class="section-divider"></div>
-
-  <table>
-    <tr><th>Threat</th><th>Severity</th><th>Timeline</th><th>Signal</th></tr>
-    <tr><td>AI-native consulting</td><td><span class="badge badge-critical">Critical</span></td><td>12&ndash;24 mo</td><td>Unity Advisory ($300M), senior + AI pods</td></tr>
-    <tr><td>Hyperscaler ProServe</td><td><span class="badge badge-critical">Critical</span></td><td>Underway</td><td>AWS building AI consulting agents</td></tr>
-    <tr><td>Client self-service AI</td><td><span class="badge badge-critical">Critical</span></td><td>12&ndash;24 mo</td><td>ChatGPT/Copilot reducing advisory need</td></tr>
-    <tr><td>Big 4 down-market</td><td><span class="badge badge-high">High</span></td><td>Now</td><td>Deloitte, EY chasing mid-market</td></tr>
-    <tr><td>Offshore + AI pricing</td><td><span class="badge badge-high">High</span></td><td>12&ndash;18 mo</td><td>Indian SIs + 50K Copilot licenses each</td></tr>
-    <tr><td>Outcome pricing demand</td><td><span class="badge badge-high">High</span></td><td>12&ndash;24 mo</td><td>Zimmer Biomet $172M lawsuit</td></tr>
-    <tr><td>Pyramid collapse</td><td><span class="badge badge-high">High</span></td><td>Now</td><td>Junior hiring down 40% industry-wide</td></tr>
-    <tr><td>Boutique specialists</td><td><span class="badge badge-medium">Med-High</span></td><td>Now</td><td>Deep domain beating generalist</td></tr>
-  </table>
-
-  <div class="callout callout-critical">
-    <span class="callout-label">Consulting Pyramid Collapse</span>
-    <ul style="margin-top: 4px;">
-      <li>Junior hiring <strong>down 40%</strong> since 2023</li>
-      <li>McKinsey's Lilli + BCG's Deckster: <strong>~80% of junior analyst work</strong></li>
-      <li>Deloitte scrapping job titles June 2026</li>
-      <li><strong>40% of consulting tasks automatable</strong> (Gartner)</li>
-      <li>86% of buyers seek AI-incorporated services; 66% will leave firms that don't</li>
+  <div class="card">
+    <h3>Platform Components</h3>
+    <ul>
+      <li><strong>Chat</strong> - Direct model interaction with file upload</li>
+      <li><strong>Model Advisor</strong> - Static catalog of 30+ models with filtering</li>
+      <li><strong>Prompt Library</strong> - Pre-built prompts (read-only; submissions "later this summer")</li>
+      <li><strong>Digital Experts</strong> - 6 purpose-built AI agents on GPT-4o/4o-mini</li>
+      <li><strong>Chat History</strong> - Conversation persistence</li>
     </ul>
   </div>
 </div>
 
-<!-- ═══ 11. BLIND SPOTS ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 11</span></div>
-  <span class="section-num">Section 11</span>
-  <h2>Strategic Blind Spots</h2>
-  <div class="section-divider"></div>
+<!-- ==================== KNOWLEDGE GRAPH ==================== -->
+<div class="section-title">Knowledge Graph: Platform Architecture</div>
+<div class="graph-container">
+<svg viewBox="0 0 1100 620" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+  <!-- Central node -->
+  <circle cx="550" cy="50" r="30" fill="#e94560" opacity="0.9"/>
+  <text x="550" y="46" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">business@</text>
+  <text x="550" y="58" text-anchor="middle" fill="#fff" font-size="8">slalom.com</text>
 
-  <table>
-    <tr><th>#</th><th style="width: 24%;">Blind Spot</th><th>Analysis</th></tr>
-    <tr><td>1</td><td><strong>No data moat</strong></td><td>7,400+ SF projects, 2,700+ Snowflake &mdash; zero aggregate intelligence retained.</td></tr>
-    <tr><td>2</td><td><strong>Build is hidden</strong></td><td>Most defensible asset is a sub-brand nobody knows.</td></tr>
-    <tr><td>3</td><td><strong>C-Corp timing</strong></td><td>Jan 2023 conversion = PE/IPO signal. Right before layoffs. ~15 owners.</td></tr>
-    <tr><td>4</td><td><strong>No outcome pricing</strong></td><td>100% T&amp;M in a market demanding outcomes.</td></tr>
-    <tr><td>5</td><td><strong>EnhanceIQ trap</strong></td><td>Flagship tool runs on Gemini. Google can absorb it.</td></tr>
-    <tr><td>6</td><td><strong>PTO deficit</strong></td><td>7 holidays + 2 weeks. Compounds attrition.</td></tr>
-    <tr><td>7</td><td><strong>Federal risk</strong></td><td>High-profile but slow procurement, political shifts.</td></tr>
-    <tr><td>8</td><td><strong>No vertical dominance</strong></td><td>Serves all industries, owns none.</td></tr>
-    <tr><td>9</td><td><strong>Bench weaponized</strong></td><td>Was retention tool. Now triggers PIPs. #1 Glassdoor grievance.</td></tr>
-    <tr><td>10</td><td><strong>Market fragmentation</strong></td><td>45 autonomous markets = inconsistent quality, no unified AI strategy.</td></tr>
-  </table>
+  <!-- Feature tier links -->
+  <line x1="550" y1="80" x2="180" y2="150" stroke="#53d8fb66" stroke-width="2"/>
+  <line x1="550" y1="80" x2="400" y2="150" stroke="#53d8fb66" stroke-width="2"/>
+  <line x1="550" y1="80" x2="700" y2="150" stroke="#53d8fb66" stroke-width="2"/>
+  <line x1="550" y1="80" x2="920" y2="150" stroke="#53d8fb66" stroke-width="2"/>
 
-  <div class="verdict-box" style="margin-top: 16px;">
-    <div class="verdict-title">Final Assessment</div>
-    Slalom is a $3B firm with deep local relationships, elite partnerships, and a genuine Build capability. But the fundamentals are deteriorating: no proprietary technology, broken culture, commodity revenue, and a model misaligned with the AI-native future. The next 12&ndash;24 months will determine whether Slalom adapts or becomes a cautionary tale.
+  <!-- Feature nodes -->
+  <rect x="110" y="135" rx="8" ry="8" width="140" height="36" fill="#53d8fb" opacity="0.8"/>
+  <text x="180" y="157" text-anchor="middle" fill="#16213e" font-size="10" font-weight="700">Model Advisor</text>
+
+  <rect x="330" y="135" rx="8" ry="8" width="140" height="36" fill="#53d8fb" opacity="0.8"/>
+  <text x="400" y="157" text-anchor="middle" fill="#16213e" font-size="10" font-weight="700">Prompt Library</text>
+
+  <rect x="630" y="135" rx="8" ry="8" width="140" height="36" fill="#53d8fb" opacity="0.8"/>
+  <text x="700" y="157" text-anchor="middle" fill="#16213e" font-size="10" font-weight="700">Digital Experts</text>
+
+  <rect x="850" y="135" rx="8" ry="8" width="140" height="36" fill="#53d8fb" opacity="0.8"/>
+  <text x="920" y="157" text-anchor="middle" fill="#16213e" font-size="10" font-weight="700">Chat + History</text>
+
+  <!-- Provider tier links from Model Advisor -->
+  <line x1="180" y1="171" x2="120" y2="250" stroke="#e9456066" stroke-width="1.5"/>
+  <line x1="180" y1="171" x2="300" y2="250" stroke="#e9456066" stroke-width="1.5"/>
+  <line x1="180" y1="171" x2="480" y2="250" stroke="#e9456066" stroke-width="1.5"/>
+  <line x1="180" y1="171" x2="660" y2="250" stroke="#e9456066" stroke-width="1.5"/>
+  <line x1="180" y1="171" x2="820" y2="250" stroke="#e9456066" stroke-width="1.5"/>
+  <line x1="180" y1="171" x2="960" y2="250" stroke="#e9456066" stroke-width="1.5"/>
+
+  <!-- Provider nodes -->
+  <circle cx="120" cy="250" r="22" fill="#e94560" opacity="0.7"/>
+  <text x="120" y="254" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">OpenAI</text>
+
+  <circle cx="300" cy="250" r="22" fill="#00d97e" opacity="0.7"/>
+  <text x="300" y="254" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Anthropic</text>
+
+  <circle cx="480" cy="250" r="22" fill="#ffc107" opacity="0.7"/>
+  <text x="480" y="254" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Google</text>
+
+  <circle cx="660" cy="250" r="22" fill="#9b59b6" opacity="0.7"/>
+  <text x="660" y="254" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Meta</text>
+
+  <circle cx="820" cy="250" r="22" fill="#3498db" opacity="0.7"/>
+  <text x="820" y="254" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Amazon</text>
+
+  <circle cx="960" cy="250" r="22" fill="#1abc9c" opacity="0.7"/>
+  <text x="960" y="254" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">DeepSeek</text>
+
+  <!-- Model boxes -->
+  <!-- OpenAI -->
+  <line x1="120" y1="272" x2="60" y2="330" stroke="#e9456044" stroke-width="1"/>
+  <line x1="120" y1="272" x2="120" y2="330" stroke="#e9456044" stroke-width="1"/>
+  <line x1="120" y1="272" x2="180" y2="330" stroke="#e9456044" stroke-width="1"/>
+  <rect x="10" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#e94560" stroke-width="1"/>
+  <text x="60" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">GPT-5 Series (5)</text>
+  <text x="60" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">5.2 | 5.1 | 5 | mini | nano</text>
+  <rect x="70" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#e94560" stroke-width="1"/>
+  <text x="120" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">GPT-4 (3)</text>
+  <text x="120" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">4.1 | 4o | 4o-mini</text>
+  <rect x="130" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#e94560" stroke-width="1"/>
+  <text x="180" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">o-Series (4) + OSS</text>
+  <text x="180" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">o1 | o3 | o3m | o4m | OSS</text>
+
+  <!-- Anthropic -->
+  <line x1="300" y1="272" x2="260" y2="330" stroke="#00d97e44" stroke-width="1"/>
+  <line x1="300" y1="272" x2="340" y2="330" stroke="#00d97e44" stroke-width="1"/>
+  <rect x="210" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#00d97e" stroke-width="1"/>
+  <text x="260" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">Opus (3) + Haiku</text>
+  <text x="260" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">4 | 4.1 | 4.5 | H4.5</text>
+  <rect x="290" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#00d97e" stroke-width="1"/>
+  <text x="340" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">Sonnet (3)</text>
+  <text x="340" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">3.7 | 4 | 4.5</text>
+
+  <!-- Google -->
+  <line x1="480" y1="272" x2="480" y2="330" stroke="#ffc10744" stroke-width="1"/>
+  <rect x="430" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#ffc107" stroke-width="1"/>
+  <text x="480" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">Gemini (3)</text>
+  <text x="480" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">2.5P | 3.0F | 3.0P</text>
+
+  <!-- Meta -->
+  <line x1="660" y1="272" x2="660" y2="330" stroke="#9b59b644" stroke-width="1"/>
+  <rect x="610" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#9b59b6" stroke-width="1"/>
+  <text x="660" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">Llama (3)</text>
+  <text x="660" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">3-8B | 3.3-70B | 4Mav | 4Sc</text>
+
+  <!-- Amazon -->
+  <line x1="820" y1="272" x2="820" y2="330" stroke="#3498db44" stroke-width="1"/>
+  <rect x="770" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#3498db" stroke-width="1"/>
+  <text x="820" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">Nova (2)</text>
+  <text x="820" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">Pro | 2 Lite</text>
+
+  <!-- DeepSeek -->
+  <line x1="960" y1="272" x2="960" y2="330" stroke="#1abc9c44" stroke-width="1"/>
+  <rect x="910" y="320" rx="5" ry="5" width="100" height="36" fill="#16213e" stroke="#1abc9c" stroke-width="1"/>
+  <text x="960" y="340" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="600">DeepSeek-R1</text>
+  <text x="960" y="350" text-anchor="middle" fill="#a0a0c0" font-size="7">Reasoning | CoT</text>
+
+  <!-- Digital Expert links from DE node -->
+  <line x1="700" y1="171" x2="500" y2="430" stroke="#53d8fb33" stroke-width="1.5"/>
+  <line x1="700" y1="171" x2="640" y2="430" stroke="#53d8fb33" stroke-width="1.5"/>
+  <line x1="700" y1="171" x2="780" y2="430" stroke="#53d8fb33" stroke-width="1.5"/>
+
+  <!-- Digital Expert nodes -->
+  <rect x="430" y="420" rx="6" ry="6" width="140" height="32" fill="#53d8fb22" stroke="#53d8fb" stroke-width="1"/>
+  <text x="500" y="436" text-anchor="middle" fill="#53d8fb" font-size="8" font-weight="600">RFP Analyzer</text>
+  <text x="500" y="447" text-anchor="middle" fill="#a0a0c0" font-size="7">GPT-4o</text>
+
+  <rect x="570" y="420" rx="6" ry="6" width="140" height="32" fill="#53d8fb22" stroke="#53d8fb" stroke-width="1"/>
+  <text x="640" y="436" text-anchor="middle" fill="#53d8fb" font-size="8" font-weight="600">Customer Story Gen</text>
+  <text x="640" y="447" text-anchor="middle" fill="#a0a0c0" font-size="7">GPT-4o</text>
+
+  <rect x="710" y="420" rx="6" ry="6" width="140" height="32" fill="#53d8fb22" stroke="#53d8fb" stroke-width="1"/>
+  <text x="780" y="436" text-anchor="middle" fill="#53d8fb" font-size="8" font-weight="600">Summit Advisor</text>
+  <text x="780" y="447" text-anchor="middle" fill="#a0a0c0" font-size="7">GPT-4o (beta)</text>
+
+  <!-- Capability layer -->
+  <rect x="80" y="400" rx="6" ry="6" width="100" height="28" fill="#ffc10722" stroke="#ffc107" stroke-width="1"/>
+  <text x="130" y="418" text-anchor="middle" fill="#ffc107" font-size="8" font-weight="600">Tool Calling</text>
+
+  <rect x="190" y="400" rx="6" ry="6" width="100" height="28" fill="#ffc10722" stroke="#ffc107" stroke-width="1"/>
+  <text x="240" y="418" text-anchor="middle" fill="#ffc107" font-size="8" font-weight="600">File Processing</text>
+
+  <rect x="300" y="400" rx="6" ry="6" width="100" height="28" fill="#ffc10722" stroke="#ffc107" stroke-width="1"/>
+  <text x="350" y="418" text-anchor="middle" fill="#ffc107" font-size="8" font-weight="600">Multilingual</text>
+
+  <!-- GAP indicators -->
+  <rect x="80" y="470" rx="6" ry="6" width="120" height="28" fill="#ff6b6b22" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="140" y="488" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="700">NO Governance</text>
+
+  <rect x="210" y="470" rx="6" ry="6" width="120" height="28" fill="#ff6b6b22" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="270" y="488" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="700">NO Agent Framework</text>
+
+  <rect x="340" y="470" rx="6" ry="6" width="120" height="28" fill="#ff6b6b22" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="400" y="488" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="700">NO RAG Layer</text>
+
+  <rect x="470" y="470" rx="6" ry="6" width="120" height="28" fill="#ff6b6b22" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="530" y="488" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="700">NO Fine-Tuning</text>
+
+  <rect x="600" y="470" rx="6" ry="6" width="120" height="28" fill="#ff6b6b22" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="660" y="488" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="700">NO Image Gen</text>
+
+  <rect x="730" y="470" rx="6" ry="6" width="120" height="28" fill="#ff6b6b22" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="790" y="488" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="700">NO Mistral/Cohere</text>
+
+  <!-- Legend -->
+  <rect x="30" y="530" rx="4" ry="4" width="10" height="10" fill="#53d8fb"/>
+  <text x="46" y="539" fill="#a0a0c0" font-size="9">Platform Features</text>
+  <rect x="150" y="530" rx="4" ry="4" width="10" height="10" fill="#e94560"/>
+  <text x="166" y="539" fill="#a0a0c0" font-size="9">OpenAI</text>
+  <rect x="220" y="530" rx="4" ry="4" width="10" height="10" fill="#00d97e"/>
+  <text x="236" y="539" fill="#a0a0c0" font-size="9">Anthropic</text>
+  <rect x="310" y="530" rx="4" ry="4" width="10" height="10" fill="#ffc107"/>
+  <text x="326" y="539" fill="#a0a0c0" font-size="9">Google / Capabilities</text>
+  <rect x="440" y="530" rx="4" ry="4" width="10" height="10" fill="#ff6b6b"/>
+  <text x="456" y="539" fill="#a0a0c0" font-size="9">Missing Capabilities (Gaps)</text>
+</svg>
+</div>
+
+<!-- ==================== DIGITAL EXPERTS ==================== -->
+<div class="section-title">Digital Experts Inventory</div>
+<div class="section-subtitle">6 purpose-built AI agents - all running on GPT-4o or GPT-4o-mini (NOT frontier models)</div>
+
+<div class="expert-grid">
+  <div class="expert-card">
+    <h4>Connexus Advisor</h4>
+    <span class="model-badge">GPT-4o</span>
+    <p>Helps employees identify and use relevant Slalom AI tools across the business lifecycle. A meta-agent that routes to other tools.</p>
+  </div>
+  <div class="expert-card">
+    <h4>Customer Story Generator</h4>
+    <span class="model-badge">GPT-4o</span>
+    <p>Creates PPT stories from engagement inputs. Takes a Salesforce Engagement ID + docs to generate Why/What/Wow stories. Salesforce-integrated.</p>
+  </div>
+  <div class="expert-card">
+    <h4>Digital Expert Architect</h4>
+    <span class="model-badge">GPT-4o-mini</span>
+    <p>Meta-tool: creates new Digital Expert system instructions. Lets employees train custom AI agents for task automation.</p>
+  </div>
+  <div class="expert-card">
+    <h4>RFP Analyzer</h4>
+    <span class="model-badge">GPT-4o</span>
+    <p>Reviews RFPs, determines evaluation teams, maps to Slalom Solutions, finds similar proposals (permission-trimmed), and drafts response sections.</p>
+  </div>
+  <div class="expert-card">
+    <h4>Brand & Marketing Reviewer</h4>
+    <span class="model-badge">GPT-4o-mini</span>
+    <p>Reviews content for brand/legal compliance. References brand guide, legal guidance, and naming guide. Routes to legalmarketing@ before publishing.</p>
+  </div>
+  <div class="expert-card">
+    <h4>Summit Advisor (beta)</h4>
+    <span class="model-badge">GPT-4o</span>
+    <p>End-to-end delivery guidance on Summit Methodology. Beta status with "use judgment and confirm results" disclaimer.</p>
   </div>
 </div>
 
-<!-- ═══ 12. ABOUT THE ANALYST ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Section 12</span></div>
-  <span class="section-num">Section 12</span>
-  <h2>About the Analyst</h2>
-  <div class="section-divider"></div>
+<!-- ==================== SLALOM'S OWN DATA ==================== -->
+<div class="section-title">Slalom's Own 2026 Research: The Ambition-Execution Gap</div>
+<div class="section-subtitle">From their survey of 2,000 leaders (Aug 2025) - these findings apply to Slalom itself</div>
 
-  <div class="proof-banner">
-    <div class="pb-label">This Report Is the Proof of Concept</div>
-    <p style="font-size: 8.5pt; color: rgba(255,255,255,0.75); margin-bottom: 8px;">
-      What you just read &mdash; a 12-section strategic intelligence brief synthesized from 75+ sources across 4 parallel research agents &mdash; was produced by <strong style="color: #fff;">one person on a Mac Mini in under one hour</strong>. No team. No offshore analysts. No six-month engagement. This is the methodology.
-    </p>
-    <div class="pb-stats">
-      <div class="pb-stat"><div class="pb-num">50</div><div class="pb-desc">Active Repositories</div></div>
-      <div class="pb-stat"><div class="pb-num">35+</div><div class="pb-desc">Custom AI Skills</div></div>
-      <div class="pb-stat"><div class="pb-num">15+</div><div class="pb-desc">Industries Served</div></div>
-      <div class="pb-stat"><div class="pb-num">4</div><div class="pb-desc">Agent Orchestration</div></div>
-    </div>
+<div class="two-col">
+  <div class="card">
+    <h3>The Numbers That Matter</h3>
+    <ul>
+      <li><span class="data-stat">90%</span> plan to increase AI spending in 2026</li>
+      <li><span class="data-stat">Only 39%</span> have clear ROI metrics for AI</li>
+      <li><span class="data-stat">Only 21%</span> report enterprise-wide AI use cases</li>
+      <li><span class="data-stat">93%</span> report workforce barriers (skills gaps)</li>
+      <li><span class="data-stat">55%</span> say skills are the #1 obstacle</li>
+      <li><span class="data-stat">Only 9%</span> of employees receive AI coaching</li>
+      <li><span class="data-stat">50%+</span> still run core systems on legacy platforms</li>
+      <li><span class="data-stat">Only 39%</span> achieved multi-agent workflows</li>
+    </ul>
   </div>
-
-  <h3>Daniel Yarmoluk</h3>
-  <p>Builder of multi-agent intelligence systems. Adjunct faculty, University of St. Thomas (SEIS 666: Digital Transformation with AI, Spring 2026). Developer of proprietary frameworks for AI-native business operations across 15+ industry verticals.</p>
-
-  <h3>Scale of Experimentation</h3>
-  <div class="grid-3">
-    <div class="kpi-card"><div class="num green">50</div><div class="label">GitHub Repositories</div></div>
-    <div class="kpi-card"><div class="num green">35+</div><div class="label">Custom AI Skills</div></div>
-    <div class="kpi-card"><div class="num green">15+</div><div class="label">Industry Verticals</div></div>
-  </div>
-
-  <h3>Industry Breadth</h3>
-  <p style="font-size: 8.5pt;">Active codebases spanning: <strong>Construction &amp; Heavy Equipment</strong> (territory intelligence, sales optimization) &bull; <strong>Financial Services</strong> (capital markets, equipment finance, investment analysis, wealth management) &bull; <strong>Healthcare</strong> (clinical operations, compliance, peptide protocols) &bull; <strong>Real Estate</strong> (property analysis, investment modeling) &bull; <strong>Retail &amp; Consumer</strong> (shop estimation, skincare, tattoo aftercare) &bull; <strong>Energy &amp; Sustainability</strong> (aerial intelligence, turf analytics) &bull; <strong>Education</strong> (intelligent textbooks, curriculum design) &bull; <strong>Cybersecurity</strong> (incident response) &bull; <strong>Supply Chain</strong> (risk analysis) &bull; <strong>M&amp;A</strong> (due diligence advisory) &bull; <strong>HR &amp; Compliance</strong> (operations, regulatory) &bull; <strong>SMB Operations</strong> (AI guides, process automation) &bull; <strong>Media &amp; Content</strong> (architecture, social strategy) &bull; <strong>Hospitality</strong> (holographic displays, guest experience)</p>
-
-  <h3>Technical Architecture</h3>
-  <table>
-    <tr><th>Capability</th><th>Detail</th></tr>
-    <tr><td><strong>Agent Orchestration</strong></td><td>Multi-agent parallel execution &mdash; specialized agents for research, code, planning, and exploration running simultaneously with dependency-aware sequencing</td></tr>
-    <tr><td><strong>Subagent Routing</strong></td><td>Task-specific subagent delegation: lightweight lookups, code generation, architecture decisions, and deep exploration each routed to optimal execution paths</td></tr>
-    <tr><td><strong>Skill Framework</strong></td><td>35+ reusable AI skills (public + private) covering content generation, market intelligence, competitive analysis, knowledge graph construction, and full-stack automation</td></tr>
-    <tr><td><strong>Knowledge Graphs</strong></td><td>5-layer knowledge architecture for context persistence, concept dependency mapping, and cross-domain intelligence synthesis</td></tr>
-    <tr><td><strong>Context Engineering</strong></td><td>Optimized context loading, memory persistence across sessions, and token-efficient information architecture for sustained complex analysis</td></tr>
-    <tr><td><strong>Full-Stack Output</strong></td><td>From raw research to production-ready deliverables (HTML, PDF, data products, dashboards, interactive applications) in single sessions</td></tr>
-  </table>
-
-  <h3>The Framework Thesis</h3>
-  <div class="callout callout-opportunity">
-    <span class="callout-label">Why This Matters</span>
-    The consulting industry's core assumption &mdash; that complex business analysis requires large teams billing thousands of hours &mdash; is wrong. This report demonstrates that a single practitioner with the right agent architecture, skill library, and knowledge framework can produce intelligence that would traditionally require a team of 6&ndash;8 analysts working 4&ndash;6 weeks. The gap between what AI-native operators can deliver and what traditional consulting firms charge is the largest arbitrage opportunity in professional services. The firms that recognize this first will win. The firms that don't will be the subject of reports like this one.
-  </div>
-
-  <div style="text-align: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
-    <p style="font-size: 8pt; color: var(--slate);">
-      <strong>github.com/Yarmoluk</strong> &bull; University of St. Thomas &bull; March 2026
-    </p>
+  <div class="card">
+    <h3>The Irony for Eric</h3>
+    <p>Slalom publishes research exposing the ambition-execution gap in AI adoption. Their business@ platform <strong>is itself an example of that gap</strong>:</p>
+    <ul>
+      <li>They have 30+ models but only 6 Digital Experts (underbuilt agent layer)</li>
+      <li>They call for "enterprise-wide AI" but their platform is still in <strong>beta</strong></li>
+      <li>They warn about skills gaps but Prompt Library is <strong>read-only</strong> - employees can't contribute yet</li>
+      <li>They advocate "multi-agent workflows" but have <strong>zero agentic framework</strong> visible</li>
+      <li>They cite governance gaps but show <strong>no usage analytics or PII controls</strong></li>
+    </ul>
   </div>
 </div>
 
-<!-- ═══ SOURCES ═══ -->
-<div class="page page-break">
-  <div class="page-header"><span>Slalom Consulting &bull; Strategic Intelligence Brief</span><span class="page-header-right">Sources</span></div>
-  <span class="section-num">Appendix</span>
-  <h2>Sources &amp; References</h2>
-  <div class="section-divider"></div>
-  <p style="font-size: 8pt; color: var(--slate); margin-bottom: 12px;">75+ sources via multi-agent research &bull; March 6, 2026 &bull; 12:30 PM CST</p>
-
-  <div class="grid-2" style="font-size: 7pt; color: var(--slate); gap: 20px;">
-    <div>
-      <h4 style="font-size: 7.5pt; margin-bottom: 4px;">Company &amp; Leadership</h4>
-      <ul style="margin-left: 12px;">
-        <li>slalom.com &mdash; Homepage, Services, Leadership</li>
-        <li>en.wikipedia.org &mdash; Slalom Inc</li>
-        <li>umbrex.com &mdash; Consulting Profile</li>
-        <li>managementconsulted.com &mdash; Firm Overview</li>
-      </ul>
-      <h4 style="font-size: 7.5pt; margin-top: 8px; margin-bottom: 4px;">Financials</h4>
-      <ul style="margin-left: 12px;">
-        <li>zoominfo.com, owler.com &mdash; Revenue</li>
-        <li>tracxn.com, crunchbase.com &mdash; Funding</li>
-        <li>cbinsights.com &mdash; Analytics</li>
-      </ul>
-      <h4 style="font-size: 7.5pt; margin-top: 8px; margin-bottom: 4px;">AI &amp; Partnerships</h4>
-      <ul style="margin-left: 12px;">
-        <li>slalom.com/services/artificial-intelligence</li>
-        <li>slalom.com/newsroom &mdash; All partnerships</li>
-        <li>slalom.com/insights/ai-research-outlook-2026</li>
-        <li>aws.amazon.com/blogs/apn &mdash; Awards</li>
-        <li>globenewswire.com &mdash; Announcements</li>
-        <li>medium.com/slalom-blog &mdash; Agentic AI</li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="font-size: 7.5pt; margin-bottom: 4px;">Culture &amp; Talent</h4>
-      <ul style="margin-left: 12px;">
-        <li>glassdoor.com &mdash; 3,429 reviews</li>
-        <li>geekwire.com &mdash; Layoff reporting</li>
-        <li>channelfutures.com &mdash; Workforce</li>
-        <li>fishbowlapp.com &mdash; Discussions</li>
-        <li>comparably.com &mdash; Compensation</li>
-        <li>indeed.com, teamblind.com, levels.fyi</li>
-      </ul>
-      <h4 style="font-size: 7.5pt; margin-top: 8px; margin-bottom: 4px;">Competitive &amp; Industry</h4>
-      <ul style="margin-left: 12px;">
-        <li>rtslabs.com &mdash; Alternatives 2026</li>
-        <li>hbr.org &mdash; AI + Consulting Structure</li>
-        <li>webpronews.com &mdash; AWS ProServe</li>
-        <li>futureofconsulting.ai &mdash; 2026 Outlook</li>
-        <li>gartner.com &mdash; Peer Insights</li>
-        <li>consultingmag.com &mdash; Industry trends</li>
-        <li>cottrillresearch.com &mdash; Buyer data</li>
-        <li>vstorm.co &mdash; Boutique pricing</li>
-      </ul>
-      <h4 style="font-size: 7.5pt; margin-top: 8px; margin-bottom: 4px;">Case Studies</h4>
-      <ul style="margin-left: 12px;">
-        <li>slalom.com/customer-stories</li>
-        <li>aws.amazon.com/solutions/case-studies</li>
-      </ul>
-    </div>
+<!-- ==================== HIGHLIGHTS ==================== -->
+<div class="section-title">What's Working - Highlights</div>
+<div class="cards">
+  <div class="card highlight">
+    <span class="tag tag-highlight">Strength</span>
+    <h3>Multi-Provider Model Access (Best-in-Class Breadth)</h3>
+    <ul>
+      <li>6 providers, 30+ models - avoids vendor lock-in</li>
+      <li>Full tier spectrum: frontier (o3, Opus 4.5, GPT-5.2), mid (Sonnet, Flash), cheap (Haiku, nano)</li>
+      <li>Open-source included (Llama, DeepSeek) - signals OSS awareness for client conversations</li>
+      <li>Rapid model adoption - GPT-5.2 and Opus 4.5 already available</li>
+    </ul>
   </div>
-
-  <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border); text-align: center;">
-    <p style="font-size: 8pt; color: var(--slate-light);"><strong>Daniel Yarmoluk</strong> &bull; Multi-Agent Intelligence Architecture &bull; March 2026</p>
-    <p style="font-size: 7pt; color: var(--slate-light); margin-top: 4px;">All data from publicly available sources. Revenue figures are estimates for a privately held company.</p>
+  <div class="card highlight">
+    <span class="tag tag-highlight">Strength</span>
+    <h3>Digital Expert Architect (Self-Service Agent Builder)</h3>
+    <ul>
+      <li>Employees can create their OWN Digital Experts - this is the seed of democratized AI</li>
+      <li>Low barrier: runs on GPT-4o-mini (cheap), generates system instructions</li>
+      <li>Potential flywheel: more experts = more value = more adoption</li>
+      <li>This is the most forward-looking feature on the platform</li>
+    </ul>
+  </div>
+  <div class="card highlight">
+    <span class="tag tag-highlight">Strength</span>
+    <h3>RFP Analyzer + Customer Story Generator</h3>
+    <ul>
+      <li>High-value use cases that directly impact revenue (winning deals)</li>
+      <li>Salesforce integration (Engagement ID) - shows CRM connectivity</li>
+      <li>Permission-trimmed proposal retrieval - security-conscious design</li>
+      <li>Why/What/Wow story format - standardized methodology output</li>
+    </ul>
+  </div>
+  <div class="card highlight">
+    <span class="tag tag-highlight">Strength</span>
+    <h3>Summit Advisor (Methodology-as-Agent)</h3>
+    <ul>
+      <li>Turning Summit delivery methodology into an AI advisor is the right play</li>
+      <li>Reduces ramp-up time for new consultants</li>
+      <li>If done well, this is institutional knowledge preservation</li>
+      <li>Beta = honest about limitations ("confirm before client use")</li>
+    </ul>
+  </div>
+  <div class="card highlight">
+    <span class="tag tag-highlight">Strength</span>
+    <h3>Gemini 50MB File Support</h3>
+    <ul>
+      <li>Massive advantage for document-heavy consulting (contracts, RFPs, codebases)</li>
+      <li>Anthropic at 4.5MB and OpenAI at 3MB can't compete here</li>
+      <li>Smart to include Google specifically for this capability</li>
+    </ul>
+  </div>
+  <div class="card highlight">
+    <span class="tag tag-highlight">Strength</span>
+    <h3>Brand & Legal Guardrails Built In</h3>
+    <ul>
+      <li>Marketing reviewer references actual brand guide + legal guidance</li>
+      <li>Hard gate: routes to legalmarketing@ before publishing</li>
+      <li>Solution Naming Guide enforcement - prevents brand fragmentation</li>
+      <li>Shows governance thinking exists (at least for content)</li>
+    </ul>
   </div>
 </div>
+
+<!-- ==================== GAP SCORECARD ==================== -->
+<div class="section-title">Gap Scorecard - At a Glance</div>
+<div class="section-subtitle">Red = missing entirely. Yellow = partially addressed. Green = solid.</div>
+
+<table class="model-table" style="margin-bottom:30px;">
+  <thead>
+    <tr>
+      <th style="width:30%;">Capability</th>
+      <th style="width:12%;">Status</th>
+      <th>What Slalom Has</th>
+      <th>What's Missing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Model Access</strong></td>
+      <td><span class="badge badge-green">SOLID</span></td>
+      <td>30+ models, 6 providers, frontier + mid + budget tiers</td>
+      <td>No Mistral (EU sovereignty), Cohere (RAG), or xAI (real-time)</td>
+    </tr>
+    <tr>
+      <td><strong>Agentic AI / Multi-Agent</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>6 single-turn Digital Experts on GPT-4o</td>
+      <td>Zero orchestration, no MCP, no multi-step pipelines, no tool chaining</td>
+    </tr>
+    <tr>
+      <td><strong>RAG / Knowledge Layer</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>Nothing visible</td>
+      <td>No retrieval over internal docs, proposals, methodologies, or past engagements</td>
+    </tr>
+    <tr>
+      <td><strong>AI Governance</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>Brand reviewer has legal gate</td>
+      <td>No PII detection, no data classification, no usage analytics, no audit trails</td>
+    </tr>
+    <tr>
+      <td><strong>Usage Analytics</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>Nothing visible</td>
+      <td>No dashboards for model usage, cost tracking, team adoption, or quality metrics</td>
+    </tr>
+    <tr>
+      <td><strong>Intelligent Routing</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>Static model catalog with filters</td>
+      <td>No auto-select by task/language/file size/cost. Employees must manually choose from 30+</td>
+    </tr>
+    <tr>
+      <td><strong>Custom / Fine-Tuned Models</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>All off-the-shelf</td>
+      <td>No Slalom-tuned models, no custom embeddings, no domain-specific training</td>
+    </tr>
+    <tr>
+      <td><strong>Image Generation</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>Input-only multimodal (file upload)</td>
+      <td>No DALL-E, Imagen, or any generative image output for deliverables</td>
+    </tr>
+    <tr>
+      <td><strong>Prompt Library</strong></td>
+      <td><span class="badge badge-yellow">PARTIAL</span></td>
+      <td>Read-only pre-built prompts</td>
+      <td>Employees cannot contribute. 11K consultants' knowledge locked out</td>
+    </tr>
+    <tr>
+      <td><strong>Digital Experts</strong></td>
+      <td><span class="badge badge-yellow">PARTIAL</span></td>
+      <td>6 agents (sales, marketing, delivery)</td>
+      <td>All on GPT-4o (2 gens old). Need 50+ covering all consulting domains</td>
+    </tr>
+    <tr>
+      <td><strong>Data Sovereignty</strong></td>
+      <td><span class="badge badge-red">MISSING</span></td>
+      <td>DeepSeek available with no controls</td>
+      <td>No data residency rules, no model-tier security, no EU-sovereign option</td>
+    </tr>
+    <tr>
+      <td><strong>Multilingual Parity</strong></td>
+      <td><span class="badge badge-yellow">PARTIAL</span></td>
+      <td>OpenAI: 27 langs. Google: 13.</td>
+      <td>Anthropic: only 3 languages. o3 reasoning: English only. No auto-routing by language</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="background:#ff6b6b15; border:2px solid #ff6b6b; border-radius:10px; padding:20px 24px; margin-bottom:30px; text-align:center;">
+  <div style="font-size:36px; font-weight:800; color:#ff6b6b; margin-bottom:6px;">7 of 12 capabilities: MISSING</div>
+  <div style="font-size:14px; color:#c0c0d8;">Slalom built the model access layer. The intelligence layer on top does not exist yet.</div>
+</div>
+
+<!-- ==================== DEFICIENCIES FOR ERIC ==================== -->
+<div class="section-title">Deficiencies & Gaps - For Eric</div>
+
+<div class="erik-box">
+  <h2>Eric: 10 Critical Observations</h2>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 1</span> All Digital Experts Run on GPT-4o/4o-mini - Why Not Frontier Models?</div>
+    <div class="point-body">Slalom gives employees access to Opus 4.5 and GPT-5.2 for chat, but every Digital Expert (RFP Analyzer, Customer Story Generator, Summit Advisor) runs on GPT-4o or 4o-mini - models that are now 2 generations behind. The RFP Analyzer, arguably the highest-value tool on the platform, is using a mid-tier model from 2024. If these experts used GPT-5 or Claude Sonnet 4.5, the output quality would jump significantly. This is a cost optimization decision that sacrifices quality where it matters most.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 2</span> Only 6 Digital Experts for 11,000 Employees</div>
+    <div class="point-body">Six agents for an entire $2.5B consulting firm. Compare: Connexus Advisor (meta-routing), Customer Story Generator (sales), Digital Expert Architect (meta-creation), RFP Analyzer (sales), Brand Reviewer (marketing), Summit Advisor (delivery). Missing entirely: technical architecture advisor, data engineering assistant, cloud migration helper, staffing/resource optimizer, SOW generator, competitive intelligence, interview prep, onboarding buddy. The platform has the infrastructure for agents but hasn't invested in building them out.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 3</span> Prompt Library is Read-Only (Employee Contributions "Later This Summer")</div>
+    <div class="point-body">The Prompt Library explicitly states employees can only "view and use existing prompts" and that contributions start "later this summer." For a firm that advocates for AI democratization, locking 11,000 consultants out of contributing their prompts is a bottleneck. The most valuable prompts come from practitioners, not a central team. Every day this stays locked, institutional knowledge stays trapped in individual chats.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 4</span> No Agentic Framework - Chat Is 2024, Agents Are 2026</div>
+    <div class="point-body">Slalom's own research shows only 39% of companies have achieved multi-agent workflows. The business@ platform has zero visible agentic orchestration - no multi-step pipelines, no model chaining, no MCP (Model Context Protocol), no tool-use beyond basic file upload. Competitors (Accenture, Deloitte, McKinsey) are building agent platforms. Slalom is still in the "chat with a model" phase. The Digital Expert Architect hints at the right direction but stops at system prompt generation.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 5</span> No Governance, Usage Analytics, or Data Classification</div>
+    <div class="point-body">No visible: usage dashboards (which models do employees actually use?), cost tracking per team/model, PII detection before submission, data classification tiers (which models can see client data?), or audit trails. DeepSeek-R1 routes to Chinese-hosted infrastructure - can someone paste client data into it? For a firm handling Fortune 500 client data, this is a compliance risk. Slalom's own research flags that only 42% of companies have model controls - they appear to be in the other 58%.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 6</span> No RAG / Knowledge Layer</div>
+    <div class="point-body">30+ models, all running on public training data. No indication of a Slalom-specific retrieval layer indexing internal methodologies, past proposals, delivery frameworks, or client engagement patterns. The Summit Advisor likely has a system prompt with methodology content, but that's a prompt, not a scalable knowledge architecture. A RAG layer would make every model "Slalom-aware" instantly.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 7</span> Anthropic Limited to 3 Languages (vs. OpenAI's 27)</div>
+    <div class="point-body">Every Claude model lists only English, Spanish, Japanese. OpenAI supports 27 languages. Google supports 13. For a global firm with offices in Latin America, Europe, and Asia-Pacific, this creates a two-tier employee experience. Non-English consultants are funneled to OpenAI regardless of task fit. Either the platform needs language-based auto-routing, or the language metadata is wrong and needs correction.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 8</span> No Image Generation or Multimodal Output</div>
+    <div class="point-body">The platform handles input multimodality (file upload, image analysis) but has no visible image generation (DALL-E, Imagen, Stable Diffusion, Ideogram). Consultants building decks, wireframes, diagrams, or visual deliverables must leave the platform. This fragments workflow and pushes employees to unsanctioned tools.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 9</span> Missing Providers: No Mistral, Cohere, or xAI</div>
+    <div class="point-body">Mistral (EU data sovereignty, GDPR-compliant inference), Cohere (best-in-class enterprise RAG with embed + rerank), and xAI Grok (real-time data access) are all absent. For European client engagements requiring data residency, there's no sovereign AI option. For building enterprise search solutions, Slalom consultants can't prototype with the leading RAG platform.</div>
+  </div>
+
+  <div class="point">
+    <div class="point-title"><span class="tag tag-deficiency">Gap 10</span> Model Advisor is a Static Catalog, Not an Intelligent Router</div>
+    <div class="point-body">30+ models with subtle differences - overwhelming for non-technical consultants. The Model Advisor appears to be a filterable list (by provider, tool, file type) rather than an intelligent router that auto-selects based on task type, input language, file size, or cost tier. Risk: employees default to the model they already know (probably GPT-4o) and never discover that Gemini 3.0 can handle their 40MB PDF or that Opus 4.5 would be better for their complex architecture question.</div>
+  </div>
+</div>
+
+<!-- ==================== SUMMIT METHODOLOGY ==================== -->
+<div class="section-title">Summit Methodology Assessment</div>
+<div class="cards">
+  <div class="card">
+    <span class="tag tag-info">Context</span>
+    <h3>What Summit Is</h3>
+    <p>Slalom's proprietary delivery methodology for consulting engagements. The Summit Advisor (beta) on business@ provides end-to-end delivery guidance. It's the operational backbone - how Slalom runs projects from strategy through delivery.</p>
+    <ul>
+      <li>Five-dimension framework: Business Value, Strategy, Security/Ethics, Technology/Data, Organization/Workforce</li>
+      <li>Agile teams across 53 offices in 12 countries</li>
+      <li>Partnerships: OpenAI, Databricks, AWS, Google, Salesforce</li>
+    </ul>
+  </div>
+  <div class="card">
+    <span class="tag tag-warning">Observation</span>
+    <h3>Summit Advisor is Undercooked</h3>
+    <ul>
+      <li>Still in <strong>beta</strong> - "use judgment and confirm before client use"</li>
+      <li>Runs on GPT-4o, not a fine-tuned or RAG-enhanced model</li>
+      <li>No visible integration with project management tools (Jira, Azure DevOps)</li>
+      <li>No connection to Salesforce for live engagement data</li>
+      <li>Should be the crown jewel - instead it's a disclaimer-wrapped chatbot</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== THE ANTMAN ANTIFRAMEWORK ==================== -->
+<div class="section-title">The Yarmoluk Antiframework: ANTMAN</div>
+<div class="section-subtitle">"I don't even think it's worth talking to people about frameworks. Just go build it." — This document is the proof.</div>
+
+<div style="background:linear-gradient(135deg, #1a1a2e, #0f3460); border:2px solid #ffc107; border-radius:12px; padding:28px 32px; margin-bottom:20px;">
+  <div style="font-size:20px; font-weight:800; color:#ffc107; margin-bottom:16px;">ANTMAN = Anti-Framework for Networked Thinking & Accelerated Methodology</div>
+  <div style="font-size:13px; color:#c0c0d8; line-height:1.7; margin-bottom:16px;">
+    Traditional consulting delivers a <strong style="color:#ff6b6b;">deck about what they could build</strong>. ANTMAN delivers <strong style="color:#00d97e;">the thing they already built</strong>. This document — a complete platform analysis with knowledge graph, gap scorecard, model inventory, and strategic recommendations — was produced in <strong style="color:#ffc107;">8 minutes</strong>, not 8 weeks. That's not a process improvement. That's a category shift.
+  </div>
+  <div style="font-size:13px; color:#a0a0c0; font-style:italic;">
+    Slalom's Summit Methodology runs 6-18 month engagements. ANTMAN runs 8-minute engagements. The question isn't which is better — it's which the market will choose when both are available.
+  </div>
+</div>
+
+<div class="cards">
+  <div class="card opportunity">
+    <span class="tag tag-warning">Principle 1</span>
+    <h3>Speed Kills (Primary Axiom)</h3>
+    <p>Speed is THE competitive differentiator. Not quality, not governance, not process — speed. Ship a flawed thing fast, correct in flight. The correction loop is faster than the planning loop. This entire analysis was generated, researched, structured, and visualized in a single session.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Principle 2</span>
+    <h3>Knowledge Base as Root</h3>
+    <p>Everything starts with a knowledge base — the brain, the root, the foundation. Slalom's business@ has 30+ models but <strong>no knowledge layer underneath</strong>. ANTMAN starts with the knowledge graph, then builds agents, then generates output. Without the root, every model conversation starts from zero.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Principle 3</span>
+    <h3>Convergence, Not Proposals</h3>
+    <p>Don't send a deck about what you could build. Send the thing you already built. This document IS the pitch. Slalom's Digital Expert Architect lets employees write system prompts. ANTMAN builds, deploys, and delivers in a single session. The demo is the argument.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Principle 4</span>
+    <h3>Outcome Economy</h3>
+    <p>We are no longer in the knowledge economy. We are in the outcome economy. Problems to solutions to monetization paths, all within a single session. Consultants charge $150K for what can be produced in minutes. Slalom's pricing (6-18 month engagements) is calibrated for the old economy.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Principle 5</span>
+    <h3>Skills on Skills (Compounding)</h3>
+    <p>Skills layered on skills create emergent capability. Each skill teaches the system new patterns it applies to future problems. Slalom's Prompt Library is read-only, static, centrally managed. ANTMAN's skill system is composable, stackable, and compounds over time. The difference: Slalom's system stays flat. This one curves exponential.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Principle 6</span>
+    <h3>The Human Bottleneck</h3>
+    <p>The slowest part of any AI workflow is not the AI. It is the human. Slalom built a model access layer — great. But employees still manually pick models, manually write prompts, manually route tasks. Every manual decision point is friction. ANTMAN automates the routing, the context, and the composition. The human provides intention. The system does the rest.</p>
+  </div>
+</div>
+
+<div style="background:#16213e; border:1px solid #ffc107; border-radius:10px; padding:20px 24px; margin-bottom:30px;">
+  <div style="font-size:14px; color:#ffc107; font-weight:700; margin-bottom:10px;">What Eric Just Witnessed</div>
+  <div style="font-size:13px; color:#c0c0d8; line-height:1.7;">
+    This document analyzed Slalom's internal AI platform (30+ models, 6 Digital Experts, Prompt Library, Summit Methodology), cross-referenced it against Slalom's own 2026 AI research report (2,000 leaders surveyed), identified 10 critical gaps, produced a visual knowledge graph, scored 12 capabilities, mapped 4 strategic opportunities, and packaged it into a branded HTML deliverable with print-ready formatting. <strong style="color:#ffc107;">Built in 8 minutes. Zero meetings. Zero pre-reads. Zero proposals.</strong>
+    <br><br>
+    Now imagine this applied to: client discovery, competitive analysis, market entry strategy, technical architecture review, SOW generation, or any knowledge-intensive consulting deliverable. <strong style="color:#00d97e;">That's what ANTMAN does at scale.</strong>
+  </div>
+</div>
+
+<!-- ==================== WHAT'S LATEST IN AI / HOW WE CAN HELP ==================== -->
+<div class="section-title">Where Slalom Stands vs. State of the Art (March 2026)</div>
+<div class="cards">
+  <div class="card opportunity">
+    <span class="tag tag-warning">Gap vs. SOTA</span>
+    <h3>Agentic AI</h3>
+    <p><strong>SOTA:</strong> Multi-agent orchestration (CrewAI, AutoGen, Claude Agent SDK), MCP protocol, tool-use chains, computer use agents.</p>
+    <p><strong>Slalom:</strong> Single-turn chat with file upload. Digital Experts are system-prompt wrappers, not agents. No multi-step orchestration.</p>
+    <p><strong>Delta:</strong> Massive. Slalom is 12-18 months behind on agentic deployment.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Gap vs. SOTA</span>
+    <h3>RAG & Knowledge Architecture</h3>
+    <p><strong>SOTA:</strong> Graph RAG, hybrid search (vector + keyword), Cohere reranking, multi-index retrieval, knowledge graphs.</p>
+    <p><strong>Slalom:</strong> No visible RAG layer. AI Value Platform exists externally but isn't connected to business@. Internal knowledge stays in SharePoint/Confluence.</p>
+    <p><strong>Delta:</strong> Significant. Every consulting engagement generates reusable knowledge that's currently lost.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Gap vs. SOTA</span>
+    <h3>AI Governance & Observability</h3>
+    <p><strong>SOTA:</strong> LangSmith, LangFuse, Weights & Biases, Guardrails AI, PII detection, prompt injection defense, cost attribution.</p>
+    <p><strong>Slalom:</strong> No visible monitoring, no PII gates, no cost tracking, no model audit trails. DeepSeek available with no data residency controls.</p>
+    <p><strong>Delta:</strong> Critical. Their own research says only 42% of companies have model controls.</p>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Gap vs. SOTA</span>
+    <h3>Custom Model Development</h3>
+    <p><strong>SOTA:</strong> Fine-tuning (LoRA, QLoRA), distillation, custom embeddings, domain-specific models.</p>
+    <p><strong>Slalom:</strong> All off-the-shelf models. No fine-tuning, no custom embeddings, no domain-specific models for consulting workflows.</p>
+    <p><strong>Delta:</strong> Moderate. The Digital Expert Architect is a lightweight alternative, but doesn't match real customization.</p>
+  </div>
+</div>
+
+<!-- ==================== HOW WE CAN HELP ==================== -->
+<div class="section-title">How We Can Help - Opportunity Map</div>
+<div class="cards">
+  <div class="card opportunity">
+    <span class="tag tag-warning">Opportunity 1</span>
+    <h3>Build the Agent Layer They're Missing</h3>
+    <p>Slalom has 6 Digital Experts. They need 60. The Digital Expert Architect gives employees the tools to create agents, but there's no framework for orchestration, quality control, or multi-agent pipelines. We can provide:</p>
+    <ul>
+      <li>Multi-agent orchestration framework (MCP-based)</li>
+      <li>Agent quality scoring and automated testing</li>
+      <li>Pre-built agent templates for consulting verticals</li>
+      <li>Agent marketplace with usage analytics</li>
+    </ul>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Opportunity 2</span>
+    <h3>Enterprise RAG for Institutional Knowledge</h3>
+    <p>Every Slalom engagement generates proposals, SOWs, architecture diagrams, and delivery artifacts that are currently inaccessible to AI. A RAG layer would:</p>
+    <ul>
+      <li>Index past proposals, SOWs, and delivery artifacts</li>
+      <li>Make every model "Slalom-aware" via retrieval</li>
+      <li>Permission-trim results (they already do this for RFP Analyzer)</li>
+      <li>Reduce proposal creation time from days to hours</li>
+    </ul>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Opportunity 3</span>
+    <h3>AI Governance & Observability Platform</h3>
+    <p>Their own research says this is the #1 gap. We can deliver:</p>
+    <ul>
+      <li>PII detection layer before any model submission</li>
+      <li>Data classification: tier models by security clearance</li>
+      <li>Usage analytics dashboards (model, team, cost, quality)</li>
+      <li>Audit trails for compliance (SOC 2, GDPR)</li>
+      <li>Block DeepSeek for client-sensitive data by default</li>
+    </ul>
+  </div>
+  <div class="card opportunity">
+    <span class="tag tag-warning">Opportunity 4</span>
+    <h3>Intelligent Model Router</h3>
+    <p>Replace the static Model Advisor with an intelligent router:</p>
+    <ul>
+      <li>Auto-select model based on task, language, file size, cost budget</li>
+      <li>A/B test model outputs for quality benchmarking</li>
+      <li>Deprecation engine: sunset old models with migration paths</li>
+      <li>Usage-based recommendations ("people like you use Sonnet 4.5 for this")</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== BOTTOM LINE ==================== -->
+<div class="erik-box" style="border-color: #ffc107;">
+  <h2 style="color: #ffc107;">Bottom Line for Eric</h2>
+  <div class="point">
+    <div class="point-body" style="font-size: 14px; color: #e0e0e0;">
+      Slalom built a solid <strong>model access layer</strong> - 30+ models, 6 providers, unified interface. That's table stakes in March 2026.
+      <br><br>
+      What they <strong>haven't built</strong> is the value layer on top: agentic orchestration, enterprise RAG, governance/observability, intelligent routing, and deep domain customization. Their own 2026 research report literally maps these gaps. The business@ platform is a <strong>chat interface with a model catalog</strong> - not an AI platform.
+      <br><br>
+      The Digital Expert Architect is the most interesting feature because it democratizes agent creation, but without an orchestration framework, quality controls, or a knowledge layer underneath, it's building castles on sand.
+      <br><br>
+      <strong>Six Digital Experts for 11,000 employees. All on GPT-4o. Prompt Library is read-only. Summit Advisor is beta. No RAG. No governance. No agents.</strong>
+      <br><br>
+      The opportunity is clear: Slalom has the infrastructure and the intent. They need the intelligence layer.
+      <br><br>
+      <a href="plan.html" style="display:inline-block; background:#ffc107; color:#16213e; padding:12px 24px; border-radius:6px; font-weight:800; font-size:15px; text-decoration:none;">VIEW THE 30-DAY PLAN + ALL CODE →</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<button class="no-print" onclick="window.print()">Save as PDF</button>
 
 </body>
 </html>

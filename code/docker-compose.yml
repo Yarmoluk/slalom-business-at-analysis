@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  smart-router:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn smart_router:app --host 0.0.0.0 --port 8001
+    ports:
+      - "8001:8001"
+
+  pii-scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn pii_scanner:app --host 0.0.0.0 --port 8002
+    ports:
+      - "8002:8002"
+
+  rag-layer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn rag_layer:app --host 0.0.0.0 --port 8003
+    ports:
+      - "8003:8003"
+
+  agent-orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn agent_orchestrator:app --host 0.0.0.0 --port 8004
+    ports:
+      - "8004:8004"
+    depends_on:
+      - smart-router
+      - pii-scanner
+      - rag-layer
